@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+  background-color: DimGray;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', Helvetica, Arial, sans-serif;
   font-weight: semi-bold;
@@ -17,13 +21,14 @@ p, div {
   background-position: center bottom;
   background-color: DimGray;
   background-blend-mode: multiply;
+  margin-bottom: 60px;
+  color: white;
 
   .col {
     padding-left: 30px;
     padding-right: 30px;
   }
 
-  color: white;
   h1 {
     padding-top: 60px;
     padding-bottom: 120px;

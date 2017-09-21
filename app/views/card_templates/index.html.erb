@@ -8,14 +8,17 @@
   </div>
 
   <div class='row'>
-  </div>
-
-  <div class='row'>
-      <% @templates.each do |template| %>
-        <div class='col-md-5'> <%= template.greeting %> </div>
-      <% end %>
-
-    <%= link_to 'Test Button', '/', class: 'btn btn-success' %>
+    <div class='col-1'></div>
+    <div class='col-10'>
+      <div class='row'>
+        <img src='assets/sorry_template_0.1.svg' alt='sorry template'>
+        <img src='assets/reason_template_0.1.svg' alt='reason template'>
+      </div>
+      <div class='row'>
+        <%= link_to 'Test Button', '/', class: 'btn btn-success' %>
+      </div>
+    </div>
+    <div class='col-1'>
   </div>
 
 </div>
