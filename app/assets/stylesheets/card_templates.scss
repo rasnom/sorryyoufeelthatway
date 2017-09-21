@@ -3,7 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
+  background-image: url('stack-letters-447579_1920.jpg');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
   background-color: DimGray;
+  background-blend-mode: multiply;
+  color: white;
+  padding: 60px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -15,22 +21,7 @@ p, div {
   font-family: 'Goudy Bookletter 1911', Georgia, Times, serif;
 }
 
-.headline {
-  background-image: url('stack-letters-447579_1920.jpg');
-  background-size: 100% auto;
-  background-position: center bottom;
-  background-color: DimGray;
-  background-blend-mode: multiply;
-  margin-bottom: 60px;
-  color: white;
-
-  .col {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-
-  h1 {
-    padding-top: 60px;
-    padding-bottom: 120px;
-  }
+.images-area {
+  margin-top: 60px;
 }
+
