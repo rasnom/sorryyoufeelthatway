@@ -8,7 +8,11 @@ RSpec.describe CardTemplatesController, type: :controller do
       expect(response).to render_template('index')
     end
 
-    it
+    it 'assigns @templates' do
+      some_template = CardTemplate.create(greeting: "hey there")
+      get :index
+      expect(assigns(:templates)).to eq [some_template]
+    end
   end
 
 end
