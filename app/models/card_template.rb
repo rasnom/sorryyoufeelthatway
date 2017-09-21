@@ -1,0 +1,2 @@
+class CardTemplate < ApplicationRecord
+end
