@@ -12,12 +12,16 @@
   </div>
 
   <div class='row images-area'>
-    <div class='col'>
-      <img src='assets/sorry_template_0.1.svg' class='img-fluid img-thumbnail' alt='sorry template'>
-    </div>
-    <div class='col'>
-      <img src='assets/reason_template_0.1.svg' class='img-fluid img-thumbnail' alt='reason template'>
-    </div>
+    <% @templates.each do |template| %>
+      <div class='col'>
+        <img
+          id='<%= template.greeting %>-template'
+          src='assets/<%= template.image_file %>'
+          class='img-fluid img-thumbnail'
+          alt='sorry template'
+        >
+      </div>
+    <% end %>
   </div>
 
 </div>

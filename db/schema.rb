@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921064424) do
+ActiveRecord::Schema.define(version: 20170921204703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "card_templates", force: :cascade do |t|
-    t.string "greeting"
+    t.string "greeting", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_file", null: false
   end
 
 end
