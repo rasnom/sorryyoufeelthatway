@@ -27,5 +27,8 @@ module SorryYouFeelThatWay
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    #let Heroku serve assets
+    config.serve_static_assets = true
   end
 end
