@@ -1,8 +1,17 @@
 template_list = [
-  "sorry you feel that way",
-  "there's no reason for you to be this upset"
+  {
+    greeting: "Sorry you feel that way",
+    image_file: "sorry_template_0.1.svg"
+  },
+  {
+    greeting: "There's no reason for you to be this upset",
+    image_file: "reason_template_0.1.svg"
+  }
 ]
 
-template_list.each do |greeting|
-  CardTemplate.create(greeting: greeting)
+template_list.each do |template|
+  CardTemplate.create({
+    greeting: template[:greeting],
+    image_file: template[:image_file]
+  })
 end

@@ -9,7 +9,7 @@ RSpec.describe CardTemplatesController, type: :controller do
     end
 
     it 'assigns @templates' do
-      some_template = CardTemplate.create(greeting: "hey there")
+      some_template = CardTemplate.create(greeting: "hey there", image_file: "this.pic")
       get :index
       expect(assigns(:templates)).to eq [some_template]
     end
