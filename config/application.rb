@@ -29,6 +29,7 @@ module SorryYouFeelThatWay
     config.generators.system_tests = nil
 
     #let Heroku serve assets
+    config.assets.compile = true
     config.serve_static_assets = true
   end
 end
