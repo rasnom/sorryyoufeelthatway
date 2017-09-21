@@ -1,9 +1,25 @@
-<h1> Sorry you feel that way </h1>
+<div class='container-fluid page'>
 
-<ul>
-  <% @templates.each do |template| %>
-    <li><%= template.greeting %> </li>
-  <% end %>
-</ul>
+  <div class='row'>
+    <div class='col'>
+      <h1> Let them know what you really think </h1>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col'>
+      <p>Custom handwritten notes delivered by post: $4.99</p>
+    </div>
+  </div>
 
-<%= link_to 'Test Button', '/', class: 'btn btn-success' %>
+  <div class='row images-area'>
+    <div class='col'>
+      <img src='assets/sorry_template_0.1.svg' class='img-fluid img-thumbnail' alt='sorry template'>
+    </div>
+    <div class='col'>
+      <img src='assets/reason_template_0.1.svg' class='img-fluid img-thumbnail' alt='reason template'>
+    </div>
+  </div>
+
+</div>
+
+
