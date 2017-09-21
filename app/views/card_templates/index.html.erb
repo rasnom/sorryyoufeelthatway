@@ -1,0 +1,9 @@
+<h1> Sorry you feel that way </h1>
+
+<ul>
+  <% @templates.each do |template| %>
+    <li><%= template.greeting %> </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Test Button', '/', class: 'btn btn-success' %>
