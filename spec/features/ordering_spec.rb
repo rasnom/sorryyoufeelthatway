@@ -10,4 +10,33 @@ describe 'Customizing and ordering a card' do
     end
   end
 
+  describe 'Customizing and ordering a card' do
+    xit 'Can create a card with all of the relevant fields' do
+      visit "/card_templates/#{template.id}"
+
+      fill_in_card_form(
+        message: 'Not having the sorry',
+        signature: 'Kindly, James',
+        recipient_name: 'Bad Friend',
+        street_address: '123 Main Street',
+        city: 'Oakland',
+        state: 'CA',
+        zip_code: '94607'
+      )
+      click_on 'Send Card'
+
+      expect(page).to have_content 'Your card has been ordered'
+    end
+  end
+
+  def fill_in_card_form(message:, signature:, recipient_name:, street_address:, city:, state:, zip_code:)
+    fill_in 'Custom Message', with: message
+    fill_in 'Signature', with: signature
+    fill_in 'Recipient Name', with: recipient_name
+    fill_in 'Street Address', with: street_address
+    fill_in 'City', with: city
+    fill_in 'State', with: state
+    fill_in 'Zip Code', with: zip_code
+  end
+
 end
