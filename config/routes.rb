@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
 get '/', to: 'card_templates#index'
 
-resources :card_templates, only: [:index] do
-  resources :cards, only: [:new, :create]
+resources :card_templates, only: [:index, :show] do
+  resources :cards, only: [:create]
 end
 
 end
