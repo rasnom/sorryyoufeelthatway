@@ -8,10 +8,17 @@ describe 'site home' do
     expect(page).to have_content "Let them know what you really think"
   end
 
-  it 'displays the card templates' do
-    visit '/'
-    image = page.find("#" + template[:greeting] + "-template")
-    expect(image).to have_xpath("//img[contains(@src, #{template.image_file})]")
-  end
+  describe 'card templates' do
+    it 'are displayed' do
+      visit '/'
+      image = page.find("#" + template[:greeting] + "-template")
+      expect(image).to have_xpath("//img[contains(@src, /assets/#{template.image_file})]")
+    end
 
+    it 'link to card creation pages' do
+      visit '/'
+      click_link("#{template[:greeting]}-template")
+      expect(page).to have_content "Customize your message"
+    end
+  end
 end
