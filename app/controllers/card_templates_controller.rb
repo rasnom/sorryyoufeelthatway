@@ -5,7 +5,7 @@ class CardTemplatesController < ApplicationController
   end
 
   def show
-
+    @template = CardTemplate.find(params[:id])
   end
 
 end
