@@ -11,11 +11,11 @@ describe 'Customizing and ordering a card' do
   end
 
   describe 'Customizing and ordering a card' do
-    xit 'Can create a card with all of the relevant fields' do
+    it 'Can create a card with all of the relevant fields' do
       visit "/card_templates/#{template.id}"
 
       fill_in_card_form(
-        message: 'Not having the sorry',
+        custom_message: 'Not having the sorry',
         signature: 'Kindly, James',
         recipient_name: 'Bad Friend',
         street_address: '123 Main Street',
@@ -29,11 +29,11 @@ describe 'Customizing and ordering a card' do
     end
   end
 
-  def fill_in_card_form(message:, signature:, recipient_name:, street_address:, city:, state:, zip_code:)
-    fill_in 'Custom Message', with: message
+  def fill_in_card_form(custom_message:, signature:, recipient_name:, street_address:, city:, state:, zip_code:)
+    fill_in 'Custom Message', with: custom_message
     fill_in 'Signature', with: signature
     fill_in 'Recipient Name', with: recipient_name
-    fill_in 'Street Address', with: street_address
+    fill_in 'Address', with: street_address
     fill_in 'City', with: city
     fill_in 'State', with: state
     fill_in 'Zip Code', with: zip_code
