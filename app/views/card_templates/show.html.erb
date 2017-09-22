@@ -2,7 +2,7 @@ Customize your message here
 
 <%= @template.greeting %>
 
-<%= form_for :new_card do |f| %>
+<%= form_for [@template, Card.new] do |f| %>
   <%= f.label :custom_message, "Custom Message" %>
   <%= f.text_field :custom_message %>
   <%= f.label :signature, "Signature" %>
