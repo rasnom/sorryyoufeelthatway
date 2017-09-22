@@ -4,4 +4,8 @@ class CardTemplatesController < ApplicationController
     @templates = CardTemplate.all
   end
 
+  def show
+
+  end
+
 end
