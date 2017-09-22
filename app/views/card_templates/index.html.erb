@@ -14,9 +14,12 @@
   <div class='row images-area'>
     <% @templates.each do |template| %>
       <div class='col'>
-        <a href='/card_templates/<%= template.id %>/cards/new'>
+        <a
+          href='/card_templates/<%= template.id %>'
+          id='template-<%= template.id %>-create'
+        >
           <img
-            id='<%= template.greeting %>-template'
+            id='template-<%= template.id %>-image'
             src='assets/<%= template.image_file %>'
             class='img-fluid img-thumbnail'
             alt='sorry template'

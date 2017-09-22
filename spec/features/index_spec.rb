@@ -9,15 +9,16 @@ describe 'site home' do
   end
 
   describe 'card templates' do
+
     it 'are displayed' do
       visit '/'
-      image = page.find("#" + template[:greeting] + "-template")
+      image = page.find("#template-#{template[:id]}-image")
       expect(image).to have_xpath("//img[contains(@src, /assets/#{template.image_file})]")
     end
 
     it 'link to card creation pages' do
       visit '/'
-      click_link("#{template[:greeting]}-template")
+      find("#template-#{template[:id]}-create").click
       expect(page).to have_content "Customize your message"
     end
   end
