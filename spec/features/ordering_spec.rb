@@ -25,7 +25,7 @@ describe 'Customizing and ordering a card' do
       )
       click_on 'Send Card'
 
-      expect(page).to have_content 'Your card has been ordered'
+      expect(page).to have_content 'It is done'
     end
   end
 
