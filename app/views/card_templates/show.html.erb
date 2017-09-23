@@ -8,15 +8,15 @@ Customize your message here
   <%= f.label :signature, "Signature" %>
   <%= f.text_field :signature %>
   <%= f.label :recipient_name, "Recipient Name" %>
-  <%= f.text_field :recipient_name %>
+  <%= f.text_field :recipient_name, required: true %>
   <%= f.label :street_address, "Address" %>
-  <%= f.text_field :street_address %>
+  <%= f.text_field :street_address, required: true %>
   <%= f.label :city, "City" %>
-  <%= f.text_field :city %>
+  <%= f.text_field :city, required: true %>
   <%= f.label :state, "State" %>
-  <%= f.text_field :state %>
+  <%= f.text_field :state, required: true %>
   <%= f.label :zip_code, "Zip Code" %>
-  <%= f.text_field :zip_code %>
+  <%= f.text_field :zip_code, required: true %>
   <%= f.hidden_field :card_template_id, value: @template.id %>
   <%= f.submit "Send Card" %>
 <% end %>
