@@ -17,5 +17,6 @@ Customize your message here
   <%= f.text_field :state %>
   <%= f.label :zip_code, "Zip Code" %>
   <%= f.text_field :zip_code %>
+  <%= f.hidden_field :card_template_id, value: @template.id %>
   <%= f.submit "Send Card" %>
 <% end %>

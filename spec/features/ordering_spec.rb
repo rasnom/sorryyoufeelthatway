@@ -13,6 +13,7 @@ describe 'Customizing and ordering a card' do
   describe 'Customizing and ordering a card' do
     it 'Can create a card with all of the relevant fields' do
       visit "/card_templates/#{template.id}"
+      card_count = Card.all.count
 
       fill_in_card_form(
         custom_message: 'Not having the sorry',
@@ -26,6 +27,7 @@ describe 'Customizing and ordering a card' do
       click_on 'Send Card'
 
       expect(page).to have_content 'It is done'
+      expect(Card.all.count).to eq (card_count + 1)
     end
   end
 
