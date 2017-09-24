@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     resources :cards, only: [:create]
   end
 
+  resources :charges
+
 end
