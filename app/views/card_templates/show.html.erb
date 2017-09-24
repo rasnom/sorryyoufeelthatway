@@ -1,22 +1,61 @@
-Customize your message here
+<div class='container-fluid'>
+  <h2> Customize your message here </h2>
 
-<%= @template.greeting %>
+  <form class="form-horizontal center" role="form">
+    <%= form_for [@template, Card.new] do |f| %>
 
-<%= form_for [@template, Card.new] do |f| %>
-  <%= f.label :custom_message, "Custom Message" %>
-  <%= f.text_field :custom_message %>
-  <%= f.label :signature, "Signature" %>
-  <%= f.text_field :signature %>
-  <%= f.label :recipient_name, "Recipient Name" %>
-  <%= f.text_field :recipient_name, required: true %>
-  <%= f.label :street_address, "Address" %>
-  <%= f.text_field :street_address, required: true %>
-  <%= f.label :city, "City" %>
-  <%= f.text_field :city, required: true %>
-  <%= f.label :state, "State" %>
-  <%= f.text_field :state, required: true %>
-  <%= f.label :zip_code, "Zip Code" %>
-  <%= f.text_field :zip_code, required: true %>
-  <%= f.hidden_field :card_template_id, value: @template.id %>
-  <%= f.submit "Send Card" %>
-<% end %>
+      <div class='row'>
+        <div class='col-2 text-right'>
+          <p><%= @template.greeting %></p>
+        </div>
+      </div>
+
+      <div class='form-group'>
+        <div class='field row'>
+          <%= f.label :recipient_name, "Recipient Name", class: "col-2 text-right"%>
+          <%= f.text_field :recipient_name, required: true, class: "col-4 form-control"%>
+        </div>
+        <div class='field row'>
+          <%= f.label :street_address, "Address", class: "col-2 text-right"%>
+          <%= f.text_field :street_address, required: true, class: "col-4 form-control" %>
+        </div>
+        <div class='field row'>
+          <%= f.label :city, "City" , class: "col-2 text-right"%>
+          <%= f.text_field :city, required: true, class: "col-4 form-control" %>
+        </div>
+        <div class='field row'>
+          <%= f.label :state, "State", class: "col-2 text-right" %>
+          <%= f.text_field :state, required: true, class: "col-4 form-control" %>
+        </div>
+        <div class='field row'>
+          <%= f.label :zip_code, "Zip Code", class: "col-2 text-right" %>
+          <%= f.text_field :zip_code, required: true, class: "col-4 form-control" %>
+        </div>
+      </div>
+
+      <div class='form-group'>
+        <div class='field row'>
+          <%= f.label :custom_message, "Custom Message", class: "col-2 text-right" %>
+          <%= f.text_field :custom_message, class: "col-8 form-control" %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <div class='field row'>
+          <%= f.label :signature, "Signature", class: "col-2 text-right" %>
+          <%= f.text_field :signature, class: "col-8 form-control" %>
+        </div>
+      </div>
+      <%= f.hidden_field :card_template_id, value: @template.id %>
+
+      <div class='row'>
+        <div class='col-2'> </div>
+        <div class='col-2'>
+          <%= f.submit "Send Card" %>
+        </div>
+      </div>
+
+    <% end %>
+  </form>
+
+
+</div>
