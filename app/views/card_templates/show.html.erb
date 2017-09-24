@@ -1,0 +1,22 @@
+Customize your message here
+
+<%= @template.greeting %>
+
+<%= form_for [@template, Card.new] do |f| %>
+  <%= f.label :custom_message, "Custom Message" %>
+  <%= f.text_field :custom_message %>
+  <%= f.label :signature, "Signature" %>
+  <%= f.text_field :signature %>
+  <%= f.label :recipient_name, "Recipient Name" %>
+  <%= f.text_field :recipient_name, required: true %>
+  <%= f.label :street_address, "Address" %>
+  <%= f.text_field :street_address, required: true %>
+  <%= f.label :city, "City" %>
+  <%= f.text_field :city, required: true %>
+  <%= f.label :state, "State" %>
+  <%= f.text_field :state, required: true %>
+  <%= f.label :zip_code, "Zip Code" %>
+  <%= f.text_field :zip_code, required: true %>
+  <%= f.hidden_field :card_template_id, value: @template.id %>
+  <%= f.submit "Send Card" %>
+<% end %>

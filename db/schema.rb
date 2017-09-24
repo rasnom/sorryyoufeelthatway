@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921204703) do
+ActiveRecord::Schema.define(version: 20170922222436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(version: 20170921204703) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_file", null: false
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.bigint "card_template_id"
+    t.string "custom_message"
+    t.string "signature"
+    t.string "recipient_name"
+    t.string "street_address"
+    t.string "city"
+    t.string "state"
+    t.string "zip_code"
+    t.datetime "sent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_template_id"], name: "index_cards_on_card_template_id"
   end
 
 end

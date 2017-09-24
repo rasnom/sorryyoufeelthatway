@@ -14,12 +14,17 @@
   <div class='row images-area'>
     <% @templates.each do |template| %>
       <div class='col'>
-        <img
-          id='<%= template.greeting %>-template'
-          src='assets/<%= template.image_file %>'
-          class='img-fluid img-thumbnail'
-          alt='sorry template'
+        <a
+          href='/card_templates/<%= template.id %>'
+          id='template-<%= template.id %>-create'
         >
+          <img
+            id='template-<%= template.id %>-image'
+            src='/assets/<%= template.image_file %>'
+            class='img-fluid img-thumbnail'
+            alt='sorry template'
+          >
+        </a>
       </div>
     <% end %>
   </div>

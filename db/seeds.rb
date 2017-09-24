@@ -1,3 +1,5 @@
+CardTemplate.delete_all
+
 template_list = [
   {
     greeting: "Sorry you feel that way",
