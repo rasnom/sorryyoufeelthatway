@@ -2,17 +2,16 @@ require 'rails_helper'
 
 describe 'Customizing and ordering a card' do
   let(:template) { CardTemplate.create(greeting: "nevermind", image_file: "123.gif") }
+  before(:each) { visit "/card_templates/#{template.id}" }
 
   describe 'Viewing the customization page' do
     it 'has the greeting for the template selected' do
-      visit "/card_templates/#{template.id}"
       expect(page).to have_content template.greeting
     end
   end
 
-  describe 'Customizing and ordering a card' do
+  describe 'Customizing a card' do
     before(:each) do
-      visit "/card_templates/#{template.id}"
       fill_in_card_form(
         custom_message: 'Not having the sorry',
         signature: 'Kindly, James',
@@ -38,7 +37,12 @@ describe 'Customizing and ordering a card' do
       # new card without required fields from being saved, so I think we can
       # set this aside to possibly revisit later.
     end
+  end
 
+  describe 'payment' do
+    it 'lists to total price' do
+      expect(find('article', class: 'payment-area')).to have_content 'Total: $4.99'
+    end
   end
 
   def fill_in_card_form(custom_message:, signature:, recipient_name:, street_address:, city:, state:, zip_code:)

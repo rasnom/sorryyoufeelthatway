@@ -3,6 +3,10 @@ class CardsController < ApplicationController
   def create
     new_card = Card.new(card_params)
 
+    p '#'*88
+    p new_card
+    p new_card.save
+
     if new_card.save
       redirect_to congrats_path
     end

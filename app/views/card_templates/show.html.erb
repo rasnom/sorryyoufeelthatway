@@ -57,5 +57,23 @@
     <% end %>
   </form>
 
+  <%= form_tag charges_path do %>
+    <article class='payment-area'>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+      <label class="amount">
+        <span>Total: $4.99</span>
+      </label>
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="custom greeting card"
+            data-amount="499"
+            data-locale="auto"></script>
+  <% end %>
 
 </div>
