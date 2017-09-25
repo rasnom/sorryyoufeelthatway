@@ -4,6 +4,9 @@
 
 ## Premise
 
+The non-apology has become a staple of contemporary discourse. SorryYouFeelThatWay.biz is a service that provides a new 
+format for expressing defensive sentiments with the trappings of archaic civility. Simply select a design provide us with a custom message, signature, and a shipping address. We will hand write the message on a physical greeting card, sign it on your behalf, and mail it. 
+
 ## Live
 
 [http://sorryyoufeelthatway.biz]
