@@ -1,6 +1,6 @@
 # SorryYouFeelThatWay.biz
 
-![screenshot](app/assets/images/sorry_screenthot.png)
+![screenshot](app/assets/images/sorry_screenshot.png)
 
 ## Premise
 
