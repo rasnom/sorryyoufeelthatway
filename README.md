@@ -1,24 +1,26 @@
-# README
+# SorryYouFeelThatWay.biz
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Premise
 
-Things you may want to cover:
+## Live
 
-* Ruby version
+[http://sorryyoufeelthatway.biz]
 
-* System dependencies
+## Tech Stack
 
-* Configuration
+* Ruby (2.3.1)
+* Rails (5.1.3)
+* Bootstrap
+* Stripe API
 
-* Database creation
+## Next Steps
 
-* Database initialization
+* Add Admin section from previous iteration 
+* Activate live Stripe account
+* Refactor styling
+* Add product photos
+* Add support page
 
-* How to run the test suite
+## Licensing
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project is licensed under [MIT license](./LICENSE)
