@@ -4,6 +4,10 @@ class ChargesController < ApplicationController
   end
 
   def create
+    p '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
+    p params
+    p '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
+
     #amount is in cents
     @amount = 499
 
@@ -15,7 +19,7 @@ class ChargesController < ApplicationController
     charge = Stripe::Charge.create(
       customer: customer.id,
       amount: @amount,
-      description: 'Rails Stripe customer',
+      description: 'Sorry you feel that way . biz Customer',
       currency: 'usd'
     )
 

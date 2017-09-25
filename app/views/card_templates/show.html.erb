@@ -1,63 +1,44 @@
 <div class='container-fluid'>
   <h2> Customize your message here </h2>
 
-  <form class="form-horizontal center" role="form">
-    <%= form_for [@template, Card.new] do |f| %>
-
-      <div class='row'>
-        <div class='col-2 text-right'>
-          <p><%= @template.greeting %></p>
-        </div>
-      </div>
-
-      <div class='form-group'>
-        <div class='field row'>
-          <%= f.label :recipient_name, "Recipient Name", class: "col-2 text-right"%>
-          <%= f.text_field :recipient_name, required: true, class: "col-4 form-control"%>
-        </div>
-        <div class='field row'>
-          <%= f.label :street_address, "Address", class: "col-2 text-right"%>
-          <%= f.text_field :street_address, required: true, class: "col-4 form-control" %>
-        </div>
-        <div class='field row'>
-          <%= f.label :city, "City" , class: "col-2 text-right"%>
-          <%= f.text_field :city, required: true, class: "col-4 form-control" %>
-        </div>
-        <div class='field row'>
-          <%= f.label :state, "State", class: "col-2 text-right" %>
-          <%= f.text_field :state, required: true, class: "col-4 form-control" %>
-        </div>
-        <div class='field row'>
-          <%= f.label :zip_code, "Zip Code", class: "col-2 text-right" %>
-          <%= f.text_field :zip_code, required: true, class: "col-4 form-control" %>
-        </div>
-      </div>
-
-      <div class='form-group'>
-        <div class='field row'>
-          <%= f.label :custom_message, "Custom Message", class: "col-2 text-right" %>
-          <%= f.text_field :custom_message, class: "col-8 form-control" %>
-        </div>
-      </div>
-      <div class='form-group'>
-        <div class='field row'>
-          <%= f.label :signature, "Signature", class: "col-2 text-right" %>
-          <%= f.text_field :signature, class: "col-8 form-control" %>
-        </div>
-      </div>
-      <%= f.hidden_field :card_template_id, value: @template.id %>
-
-      <div class='row'>
-        <div class='col-2'> </div>
-        <div class='col-2'>
-          <%= f.submit "Send Card" %>
-        </div>
-      </div>
-
-    <% end %>
-  </form>
-
   <%= form_tag charges_path do %>
+
+    <div class='form-group'>
+        <div class='field row'>
+          <label class="col-2 text-right" for="card_recipient_name">Recipient Name</label>
+          <input required="required" class="col-4 form-control" type="text" name="card[recipient_name]" id="card_recipient_name" />
+        </div>
+        <div class='field row'>
+          <label class="col-2 text-right" for="card_street_address">Address</label>
+          <input required="required" class="col-4 form-control" type="text" name="card[street_address]" id="card_street_address" />
+        </div>
+        <div class='field row'>
+          <label class="col-2 text-right" for="card_city">City</label>
+          <input required="required" class="col-4 form-control" type="text" name="card[city]" id="card_city" />
+        </div>
+        <div class='field row'>
+          <label class="col-2 text-right" for="card_state">State</label>
+          <input required="required" class="col-4 form-control" type="text" name="card[state]" id="card_state" />
+        </div>
+        <div class='field row'>
+          <label class="col-2 text-right" for="card_zip_code">Zip Code</label>
+          <input required="required" class="col-4 form-control" type="text" name="card[zip_code]" id="card_zip_code" />
+        </div>
+      </div>
+
+      <div class='form-group'>
+        <div class='field row'>
+          <label class="col-2 text-right" for="card_custom_message">Custom Message</label>
+          <input class="col-8 form-control" type="text" name="card[custom_message]" id="card_custom_message" />
+        </div>
+      </div>
+      <div class='form-group'>
+        <div class='field row'>
+          <label class="col-2 text-right" for="card_signature">Signature</label>
+          <input class="col-8 form-control" type="text" name="card[signature]" id="card_signature" />
+        </div>
+      </div>
+
     <article class='payment-area'>
       <% if flash[:error].present? %>
         <div id="error_explanation">
