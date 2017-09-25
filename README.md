@@ -1,5 +1,7 @@
 # SorryYouFeelThatWay.biz
 
+![screenshot](app/assets/images/sorry_screenthot.png)
+
 ## Premise
 
 ## Live
