@@ -30,8 +30,12 @@
           </div>
         </div>
       </div>
-      <div class='col-6'>
-        <%= @template.greeting %>
+      <div class='col-3'>
+        <img id='template-<%= @template.id %>-image'
+             src='/assets/<%= @template.image_file %>'
+             class='img-fluid img-thumbnail'
+             alt='<%= @template.greeting %>'
+        >
       </div>
     </div>
 
@@ -50,7 +54,7 @@
 
     <div class='row'>
       <div class='col-2 text-right'>
-        Total $4.99
+        Total: $4.99
       </div>
       <div class='col-8'>
         <article class='payment-area'>
@@ -65,7 +69,8 @@
                 data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                 data-description="Handwritten card delivered by post"
                 data-amount="499"
-                data-locale="auto"></script>
+                data-locale="auto">
+        </script>
       </div>
     </div>
 

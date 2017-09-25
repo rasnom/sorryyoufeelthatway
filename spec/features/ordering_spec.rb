@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 describe 'Customizing and ordering a card' do
-  let(:template) { CardTemplate.create(greeting: "nevermind", image_file: "123.gif") }
+  let!(:template) { CardTemplate.create(greeting: "nevermind", image_file: "123.gif") }
   before(:each) { visit "/card_templates/#{template.id}" }
 
   describe 'Viewing the customization page' do
     it 'has the greeting for the template selected' do
-      expect(page).to have_content template.greeting
+      expect(page.find("#template-#{template[:id]}-image")).to_not be_nil
     end
   end
 
@@ -45,7 +45,7 @@ describe 'Customizing and ordering a card' do
 
   describe 'payment' do
     it 'lists to total price' do
-      expect(find('article', class: 'payment-area')).to have_content 'Total: $4.99'
+      expect(page).to have_content 'Total: $4.99'
     end
   end
 

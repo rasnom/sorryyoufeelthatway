@@ -19,7 +19,7 @@ describe 'site home' do
     it 'link to card creation pages' do
       visit '/'
       find("#template-#{template[:id]}-create").click
-      expect(page).to have_content "Customize your message"
+      expect(page).to have_content "Customize Your Message"
     end
   end
 end
