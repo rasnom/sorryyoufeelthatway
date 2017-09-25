@@ -1,9 +1,10 @@
 <div class='container-fluid'>
   <h2> Customize your message here </h2>
 
-  <%= form_tag charges_path do %>
+  <%= form_tag card_template_cards_path(@template.id) do %>
 
     <%= @template.greeting %>
+    <input type='hidden' name='card[card_template_id]' value='<%= @template.id %>'>
 
     <div class='form-group'>
         <div class='field row'>
