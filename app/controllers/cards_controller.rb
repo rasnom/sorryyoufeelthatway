@@ -3,11 +3,6 @@ class CardsController < ApplicationController
   def create
     new_card = Card.new(card_params)
 
-    p '############################################'
-    p new_card
-    p new_card.save
-    p '############################################'
-
     unless new_card.save
       flash[:error] = "Unable to create this card for some reason."
       redirect_to "/card_templates/#{new_card.card_template_id}"
@@ -25,7 +20,12 @@ class CardsController < ApplicationController
       customer: customer.id,
       amount: @amount,
       description: 'Sorry you feel that way . biz Customer',
-      currency: 'usd'
+      currency: 'usd',
+      metadata: {
+        card_id: new_card.id,
+        card_template_id: new_card.card_template_id,
+        message: new_card.custom_message
+      }
     )
 
   rescue Stripe::CardError => e
