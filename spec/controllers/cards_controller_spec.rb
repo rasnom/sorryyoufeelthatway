@@ -11,9 +11,10 @@ RSpec.describe CardsController, type: :controller do
       xit 'Reloads the page with the flag to enable checkout' do
 
       end
+    end
 
     describe 'If there are problems with the parmams' do
-      xit 'Rerenders the page with an error' do
+      xit 'Rerenders the page with an error notice' do
 
       end
 
