@@ -41,11 +41,23 @@ describe 'Customizing and ordering a card' do
       # new card without required fields from being saved, so I think we can
       # set this aside to possibly revisit later.
     end
+
+
   end
 
   describe 'payment' do
-    it 'lists to total price' do
-      expect(page).to have_content 'Total: $4.99'
+    xit 'Show the payment section once a valid card has been created' do
+
+    end
+
+    xit 'Does not show the payment section until a valid card has been created' do
+
+    end
+
+    context 'A valid card has been created' do
+      it 'lists the total price' do
+        expect(page).to have_content 'Total: $4.99'
+      end
     end
   end
 

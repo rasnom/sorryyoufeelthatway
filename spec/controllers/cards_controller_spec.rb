@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CardsController, type: :controller do
 
-  descripe 'POST create' do
+  describe 'POST create' do
     describe 'If all the necessary params are included and valid' do
       xit 'Creates a new card' do
 
@@ -22,5 +22,9 @@ RSpec.describe CardsController, type: :controller do
 
       end
     end
+  end
+
+  descripe 'PUT update' do
+
   end
 end
