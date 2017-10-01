@@ -13,7 +13,7 @@ RSpec.describe CardsController, type: :controller do
       end
     end
 
-    describe 'If there are problems with the parmams' do
+    describe 'If there are problems with the params' do
       xit 'Rerenders the page with an error notice' do
 
       end
@@ -24,7 +24,7 @@ RSpec.describe CardsController, type: :controller do
     end
   end
 
-  descripe 'PUT update' do
+  describe 'PUT update' do
 
   end
 end
