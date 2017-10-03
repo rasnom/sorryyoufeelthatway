@@ -22,7 +22,7 @@ RSpec.describe CardsController, type: :controller do
         expect(Card.last[:custom_message]).to eq card_params[:custom_message]
       end
 
-      xit 'Reloads the page with the flag to enable checkout' do
+      xit 'Reloads the new with the flag to enable checkout' do
 
       end
     end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Customizing and ordering a card' do
   let!(:template) { CardTemplate.create(greeting: "nevermind", image_file: "123.gif") }
-  before(:each) { visit "/card_templates/#{template.id}" }
+  before(:each) { visit "/card_templates/#{template.id}/cards/new" }
 
   describe 'Viewing the customization page' do
     it 'has the greeting for the template selected' do
