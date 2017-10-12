@@ -3,6 +3,17 @@ require 'rails_helper'
 describe 'Customizing a card' do
   let!(:template) { CardTemplate.create(greeting: "nevermind", image_file: "123.gif") }
   before(:each) { visit "/card_templates/#{template.id}/cards/new" }
+  before(:each) do
+    fill_in_card_form(
+      custom_message: 'Not having the sorry',
+      signature: 'Kindly, James',
+      recipient_name: 'Bad Friend',
+      street_address: '123 Main Street',
+      city: 'Oakland',
+      state: 'CA',
+      zip_code: '94607'
+    )
+  end
 
   describe 'Viewing the customization page' do
     it 'has the greeting for the template selected' do
@@ -10,19 +21,7 @@ describe 'Customizing a card' do
     end
   end
 
-  describe 'Fillint out the card form' do
-    before(:each) do
-      fill_in_card_form(
-        custom_message: 'Not having the sorry',
-        signature: 'Kindly, James',
-        recipient_name: 'Bad Friend',
-        street_address: '123 Main Street',
-        city: 'Oakland',
-        state: 'CA',
-        zip_code: '94607'
-      )
-    end
-
+  describe 'Filling out the card form' do
     it 'Can create a card with all of the relevant fields' do
       card_count = Card.all.count
       click_button('Submit')
@@ -38,8 +37,10 @@ describe 'Customizing a card' do
   end
 
   describe 'Paying for a card' do
-    xit 'Show the payment section once a valid card has been created' do
+    before(:each) { click_button('Submit') }
 
+    it 'Shows the payment section once a valid card has been created' do
+      expect(page).to have_content "payment"
     end
 
     xit 'Does not show the payment section until a valid card has been created' do
