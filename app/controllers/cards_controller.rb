@@ -13,6 +13,7 @@ class CardsController < ApplicationController
       flash[:error] = "Unable to create this card for some reason."
       redirect_to new_card_template_card_url
     end
+  end
 
 
   #    #amount is in cents
@@ -38,7 +39,6 @@ class CardsController < ApplicationController
   # rescue Stripe::CardError => e
   #   flash[:error] = e.message
   #   redirect_to "/card_templates/#{new_card.card_template_id}"
-  end
 
   def show
   end

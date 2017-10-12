@@ -23,11 +23,41 @@ RSpec.describe CardsController, type: :controller do
     end
 
     describe 'If there are problems with the params' do
-      it 'Rerenders the page with the error summary attached' do
-        card_params[:recipient_name] = nil
-        post :create, params: { card_template_id: template.id, card: card_params }
-        expect(response).to redirect_to :new_card_template_card
-        expect(flash[:error]).to be_present
+      describe 'Rerenders the page with the error summary attached' do
+        it 'catches missing recipient_name' do
+          card_params[:recipient_name] = nil
+          post :create, params: { card_template_id: template.id, card: card_params }
+          expect(response).to redirect_to :new_card_template_card
+          expect(flash[:error]).to be_present
+        end
+
+        it 'catches missing street_address' do
+          card_params[:street_address] = nil
+          post :create, params: { card_template_id: template.id, card: card_params }
+          expect(response).to redirect_to :new_card_template_card
+          expect(flash[:error]).to be_present
+        end
+
+        it 'catches missing city' do
+          card_params[:city] = nil
+          post :create, params: { card_template_id: template.id, card: card_params }
+          expect(response).to redirect_to :new_card_template_card
+          expect(flash[:error]).to be_present
+        end
+
+        it 'catches missing state' do
+          card_params[:state] = nil
+          post :create, params: { card_template_id: template.id, card: card_params }
+          expect(response).to redirect_to :new_card_template_card
+          expect(flash[:error]).to be_present
+        end
+
+        it 'catches missing zip_code' do
+          card_params[:zip_code] = nil
+          post :create, params: { card_template_id: template.id, card: card_params }
+          expect(response).to redirect_to :new_card_template_card
+          expect(flash[:error]).to be_present
+        end
       end
     end
   end
