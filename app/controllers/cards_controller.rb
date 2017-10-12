@@ -7,12 +7,13 @@ class CardsController < ApplicationController
   def create
     new_card = Card.new(card_params)
 
-    unless new_card.save
+    if new_card.save
+      redirect_to card_template_card_url(id: new_card.id)
+    else
       flash[:error] = "Unable to create this card for some reason."
-      redirect_to "/card_templates/#{new_card.card_template_id}"
+      redirect_to new_card_template_card_url
     end
 
-    redirect_to card_template_card_url(id: new_card.id)
 
   #    #amount is in cents
   #   @amount = 499
