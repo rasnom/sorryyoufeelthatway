@@ -22,8 +22,9 @@ RSpec.describe CardsController, type: :controller do
         expect(Card.last[:custom_message]).to eq card_params[:custom_message]
       end
 
-      xit 'Reloads the new with the flag to enable checkout' do
-
+      it 'Redirects to the show view for the card' do
+        post :create, params: { card_template_id: template.id, card: card_params }
+        expect(response).to redirect_to card_template_card_url(id: Card.last.id)
       end
     end
 

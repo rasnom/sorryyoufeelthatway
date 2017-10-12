@@ -12,6 +12,8 @@ class CardsController < ApplicationController
       redirect_to "/card_templates/#{new_card.card_template_id}"
     end
 
+    redirect_to card_template_card_url(id: new_card.id)
+
   #    #amount is in cents
   #   @amount = 499
 
@@ -35,6 +37,9 @@ class CardsController < ApplicationController
   # rescue Stripe::CardError => e
   #   flash[:error] = e.message
   #   redirect_to "/card_templates/#{new_card.card_template_id}"
+  end
+
+  def show
   end
 
   private
