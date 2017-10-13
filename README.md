@@ -23,8 +23,10 @@ format for expressing defensive sentiments with the trappings of archaic civilit
 * Add Admin section from previous iteration 
 * Activate live Stripe account
 * Refactor styling
-* Add product photos
 * Add support page
+* New designs
+ * I'm not angry.
+* Add product photos
 
 ## Licensing
 
