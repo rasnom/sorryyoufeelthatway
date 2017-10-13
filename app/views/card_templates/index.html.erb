@@ -1,28 +1,28 @@
-<div class='container-fluid page'>
+<div class="container-fluid page">
 
-  <div class='row'>
-    <div class='col'>
+  <div class="row">
+    <div class="col">
       <h1> Let them know what you really think </h1>
     </div>
   </div>
-  <div class='row'>
-    <div class='col'>
+  <div class="row">
+    <div class="col">
       <p>Custom handwritten notes delivered by post: $4.99</p>
     </div>
   </div>
 
-  <div class='row images-area'>
+  <div class="row images-area">
     <% @templates.each do |template| %>
-      <div class='col'>
+      <div class="col">
         <a
-          href='/card_templates/<%= template.id %>'
-          id='template-<%= template.id %>-create'
+          href="/card_templates/<%= template.id %>/cards/new"
+          id="template-<%= template.id %>-create"
         >
           <img
-            id='template-<%= template.id %>-image'
-            src='/assets/<%= template.image_file %>'
-            class='img-fluid img-thumbnail'
-            alt='<%= template.greeting %> template'
+            id="template-<%= template.id %>-image"
+            src="/assets/<%= template.image_file %>"
+            class="img-fluid img-thumbnail"
+            alt="<%= template.greeting %> template"
           >
         </a>
       </div>
