@@ -71,26 +71,38 @@ RSpec.describe CardsController, type: :controller do
   end
 
   describe 'GET show' do
-    let(:template) { CardTemplate.create(greeting: "Whoa Nellie", image_file: "wn.png") }
-    let(:card) { Card.create({
-         card_template_id: template.id,
-         custom_message: 'errrr.....',
-         signature: '-neemur neemur',
-         recipient_name: 'the bees',
-         street_address: 'over yonder',
-         city: 'Oakland',
-         state: 'CA',
-         zip_code: '04294'
-       }) }
-    before(:each) { get :show, params: { card_template_id: template.id, id: card.id } }
+    let!(:template) { CardTemplate.create(greeting: "Whoa Nellie", image_file: "wn.png") }
+    let!(:card) { Card.create({
+      card_template_id: template.id,
+      custom_message: 'errrr.....',
+      signature: '-neemur neemur',
+      recipient_name: 'the bees',
+      street_address: 'over yonder',
+      city: 'Oakland',
+      state: 'CA',
+      zip_code: '04294'
+    }) }
 
-    it 'Renders the show view' do
-      expect(response).to render_template 'show'
+    describe 'If the session_id of the card matches the current session' do
+      before(:each) { Card.find(card.id).update(session_id: session.id) }
+      before(:each) { get :show, params: { card_template_id: template.id, id: card.id } }
+
+      it 'Renders the show view' do
+        expect(response).to render_template 'show'
+      end
+
+      it 'Assigns @template and @card' do
+        expect(assigns(:template).greeting).to eq 'Whoa Nellie'
+        expect(assigns(:card).custom_message).to eq 'errrr.....'
+      end
     end
 
-    it 'Assigns @template and @card' do
-      expect(assigns(:template).greeting).to eq 'Whoa Nellie'
-      expect(assigns(:card).custom_message).to eq 'errrr.....'
+    describe 'If the session_id does not match the current session' do
+      before(:each) { get :show, params: { card_template_id: template.id, id: card.id } }
+
+      it 'Redirects to the new card form for the relevant template' do
+        expect(response).to redirect_to new_card_template_card_url(card_template_id: template.id)
+      end
     end
   end
 end
