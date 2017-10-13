@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Customizing a card' do
   let!(:template) { CardTemplate.create(greeting: "nevermind", image_file: "123.gif") }
-  before(:each) { visit "/card_templates/#{template.id}/cards/new" }
+  before(:each) { visit "/card_templates/#{template.id}/cards/new"   }
   before(:each) do
     fill_in_card_form(
       custom_message: 'Not having the sorry',
@@ -57,9 +57,31 @@ describe 'Customizing a card' do
           expect(page).to have_content 'Total: $4.99'
         end
       end
-      
-      it 'Does not show the payment section until a valid card has been created' do
 
+      describe 'If the card does not match the current session' do
+        let(:sessionless_card){ Card.create({
+          card_template_id: template.id,
+          custom_message: 'Nonsense session_id',
+          signature: 'Cause I made it manually',
+          recipient_name: 'Bad Friend',
+          street_address: '123 Main Street',
+          city: 'Oakland',
+          state: 'CA',
+          zip_code: '94607',
+          session_id: 'humbaba'
+        }) }
+
+        it 'Does not show the card details and payment section' do
+          visit card_template_card_url(card_template_id: sessionless_card.card_template_id, id: sessionless_card.id)
+          p page
+          expect(page).to_not have_content "payment"
+        end
+
+        it 'Redirects to the new card page for the relevant template' do
+          visit card_template_card_url(card_template_id: sessionless_card.card_template_id, id: sessionless_card.id)
+          expect(page).to have_content "Customize Your Message"
+          expect(page.find("#template-#{template[:id]}-image")).to_not be_nil
+        end
       end
     end
 
