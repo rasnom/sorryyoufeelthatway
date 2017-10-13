@@ -25,7 +25,7 @@ format for expressing defensive sentiments with the trappings of archaic civilit
 * Refactor styling
 * Add support page
 * New designs
- * I'm not angry.
+  * I'm not angry.
 * Add product photos
 
 ## Licensing
