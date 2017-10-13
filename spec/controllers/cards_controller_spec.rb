@@ -61,4 +61,28 @@ RSpec.describe CardsController, type: :controller do
       end
     end
   end
+
+  describe 'GET show' do
+    let(:template) { CardTemplate.create(greeting: "Whoa Nellie", image_file: "wn.png") }
+    let(:card) { Card.create({
+         card_template_id: template.id,
+         custom_message: 'errrr.....',
+         signature: '-neemur neemur',
+         recipient_name: 'the bees',
+         street_address: 'over yonder',
+         city: 'Oakland',
+         state: 'CA',
+         zip_code: '04294'
+       }) }
+    before(:each) { get :show, params: { card_template_id: template.id, id: card.id } }
+
+    it 'Renders the show view' do
+      expect(response).to render_template 'show'
+    end
+
+    it 'Assigns @template and @card' do
+      expect(assigns(:template).greeting).to eq 'Whoa Nellie'
+      expect(assigns(:card).custom_message).to eq 'errrr.....'
+    end
+  end
 end

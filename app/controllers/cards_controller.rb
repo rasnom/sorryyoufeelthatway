@@ -41,6 +41,8 @@ class CardsController < ApplicationController
   #   redirect_to "/card_templates/#{new_card.card_template_id}"
 
   def show
+    @template = CardTemplate.find(params[:card_template_id])
+    @card = Card.find(params[:id])
   end
 
   private

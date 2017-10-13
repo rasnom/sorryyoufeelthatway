@@ -43,6 +43,14 @@ describe 'Customizing a card' do
       expect(page).to have_content "payment"
     end
 
+    it 'Still shows the greeting for the template selected' do
+      expect(page.find("#template-#{template[:id]}-image")).to_not be_nil
+    end
+
+    xit 'Still shows all the details of the customized card' do
+    
+    end
+
     xit 'Does not show the payment section until a valid card has been created' do
 
     end
