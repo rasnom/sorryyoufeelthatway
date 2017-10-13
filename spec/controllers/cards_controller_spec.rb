@@ -15,10 +15,18 @@ RSpec.describe CardsController, type: :controller do
      }}
 
   describe 'POST create' do
+    before(:each) do
+      post :create,
+        params: { card_template_id: template.id, card: card_params }
+    end
+
     describe 'If all the necessary params are included and valid' do
       it 'Creates a new card' do
-        post :create, params: { card_template_id: template.id, card: card_params }
         expect(Card.last[:custom_message]).to eq card_params[:custom_message]
+      end
+
+      it 'Sets session_id on the card' do
+        expect(Card.last[:session_id]).to eq session.id
       end
     end
 

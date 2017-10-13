@@ -8,6 +8,7 @@ class CardsController < ApplicationController
     new_card = Card.new(card_params)
 
     if new_card.save
+      new_card.update(session_id: session.id)
       redirect_to card_template_card_url(id: new_card.id)
     else
       flash[:error] = "Unable to create this card for some reason."
