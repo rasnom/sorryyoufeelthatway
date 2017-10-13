@@ -39,27 +39,30 @@ describe 'Customizing a card' do
   describe 'Paying for a card' do
     before(:each) { click_button('Submit') }
 
-    it 'Shows the payment section once a valid card has been created' do
-      expect(page).to have_content "payment"
-    end
+    describe 'Viewing the payment page' do
+      describe 'After a valid card has been created' do
+        it 'Shows the payment label' do
+          expect(page).to have_content "payment"
+        end
 
-    it 'Still shows the greeting for the template selected' do
-      expect(page.find("#template-#{template[:id]}-image")).to_not be_nil
-    end
+        it 'Still shows the greeting for the template selected' do
+          expect(page.find("#template-#{template[:id]}-image")).to_not be_nil
+        end
 
-    it 'Still shows the custom details of the customized card' do
-      expect(page).to have_content Card.last.signature
-    end
+        it 'Still shows the custom details of the customized card' do
+          expect(page).to have_content Card.last.signature
+        end
 
-    xit 'Does not show the payment section until a valid card has been created' do
+        it 'Lists total price' do
+          expect(page).to have_content 'Total: $4.99'
+        end
+      end
+      
+      it 'Does not show the payment section until a valid card has been created' do
 
-    end
-
-    context 'A valid card has been created' do
-      xit 'lists the total price' do
-        expect(page).to have_content 'Total: $4.99'
       end
     end
+
   end
 
   def fill_in_card_form(custom_message:, signature:, recipient_name:, street_address:, city:, state:, zip_code:)
