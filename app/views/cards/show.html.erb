@@ -5,3 +5,15 @@ payment
      class="img-fluid img-thumbnail"
      alt="<%= @template.greeting %>"
 >
+
+<div id="custom-card-details">
+  <ul>
+    <li><%= @card.custom_message %></li>
+    <li><%= @card.signature %></li>
+    <li><%= @card.recipient_name %></li>
+    <li><%= @card.street_address %></li>
+    <li><%= @card.city %></li>
+    <li><%= @card.state %></li>
+    <li><%= @card.zip_code %></li>
+  </ul>
+</div>
