@@ -42,7 +42,7 @@ describe 'Customizing a card' do
     describe 'Viewing the payment page' do
       describe 'After a valid card has been created' do
         it 'Shows the payment label' do
-          expect(page).to have_content "payment"
+          expect(page).to have_content "Review Order"
         end
 
         it 'Still shows the greeting for the template selected' do
@@ -74,7 +74,7 @@ describe 'Customizing a card' do
         it 'Does not show the card details and payment section' do
           visit card_template_card_url(card_template_id: sessionless_card.card_template_id, id: sessionless_card.id)
           p page
-          expect(page).to_not have_content "payment"
+          expect(page).to_not have_content "Review Order"
         end
 
         it 'Redirects to the new card page for the relevant template' do
