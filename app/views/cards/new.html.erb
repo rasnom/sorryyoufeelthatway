@@ -55,28 +55,6 @@
       <button type="submit" class="btn btn-default">Submit</button>
     </div>
 
-    <!-- <div class="row">
-      <div class="col-2 text-right">
-        Total: $4.99
-      </div>
-      <div class="col-8">
-        <article class="payment-area">
-              <% if flash[:error].present? %>
-                <div id="error_explanation">
-                  <p><%= flash[:error] %></p>
-                </div>
-              <% end %>
-        </article>
-
-        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                data-description="Handwritten card delivered by post"
-                data-amount="499"
-                data-locale="auto">
-        </script>
-      </div>
-    </div> -->
-
   <% end %>
 
 </div>
