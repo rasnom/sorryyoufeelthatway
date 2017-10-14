@@ -2,41 +2,52 @@
 
   <h2> Review Order </h2>
 
-  <img id="template-<%= @template.id %>-image"
-       src="/assets/<%= @template.image_file %>"
-       class="img-fluid img-thumbnail"
-       alt="<%= @template.greeting %>"
-  >
+  <div class="row">
+    <div class="col-6">
+      <img id="template-<%= @template.id %>-image"
+           src="/assets/<%= @template.image_file %>"
+           class="img-fluid img-thumbnail"
+           alt="<%= @template.greeting %>"
+      >
+    </div>
 
-  <div id="full-address">
-    <ul>
-      <li><%= @card.recipient_name %></li>
-      <li><%= @card.street_address %></li>
-      <li><%= @card.city %></li>
-      <li><%= @card.state %></li>
-      <li><%= @card.zip_code %></li>
-    </ul>
-  </div>
-
-
-  <div id="custom-card-details">
-    <ul>
-      <li><%= @card.custom_message %></li>
-      <li><%= @card.signature %></li>
-    </ul>
-  </div>
-
-  <div>
-    Total: $4.99
-  </div>
-
-  <article class="payment-area">
-    <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p><%= flash[:error] %></p>
+    <div class="col-6 card">
+      <div id="recipient-area">
+        <ul>
+          <li><%= @card.recipient_name %></li>
+          <li><%= @card.street_address %></li>
+          <li><%= @card.city %></li>
+          <li><%= @card.state %></li>
+          <li><%= @card.zip_code %></li>
+        </ul>
       </div>
-    <% end %>
-  </article>
+    </div>
+
+    <div class="col-6"
+      <div id="custom-card-details">
+        <ul>
+          <li><%= @card.custom_message %></li>
+          <li><%= @card.signature %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <div>
+        Total: $4.99
+      </div>
+
+      <article class="payment-area">
+        <% if flash[:error].present? %>
+          <div id="error_explanation">
+            <p><%= flash[:error] %></p>
+          </div>
+        <% end %>
+      </article>
+    </div>
+  </div>
 
   <script src="https://checkout.stripe.com/checkout.js"
     class="stripe-button"
