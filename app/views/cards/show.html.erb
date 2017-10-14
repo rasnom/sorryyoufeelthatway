@@ -1,39 +1,48 @@
-payment
+<div class="container-fluid">
 
-<img id="template-<%= @template.id %>-image"
-     src="/assets/<%= @template.image_file %>"
-     class="img-fluid img-thumbnail"
-     alt="<%= @template.greeting %>"
->
+  <h2> Review Order </h2>
 
-<div id="custom-card-details">
-  <ul>
-    <li><%= @card.custom_message %></li>
-    <li><%= @card.signature %></li>
-    <li><%= @card.recipient_name %></li>
-    <li><%= @card.street_address %></li>
-    <li><%= @card.city %></li>
-    <li><%= @card.state %></li>
-    <li><%= @card.zip_code %></li>
-  </ul>
+  <img id="template-<%= @template.id %>-image"
+       src="/assets/<%= @template.image_file %>"
+       class="img-fluid img-thumbnail"
+       alt="<%= @template.greeting %>"
+  >
+
+  <div id="full-address">
+    <ul>
+      <li><%= @card.recipient_name %></li>
+      <li><%= @card.street_address %></li>
+      <li><%= @card.city %></li>
+      <li><%= @card.state %></li>
+      <li><%= @card.zip_code %></li>
+    </ul>
+  </div>
+
+
+  <div id="custom-card-details">
+    <ul>
+      <li><%= @card.custom_message %></li>
+      <li><%= @card.signature %></li>
+    </ul>
+  </div>
+
+  <div>
+    Total: $4.99
+  </div>
+
+  <article class="payment-area">
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js"
+    class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-description="Handwritten card delivered by post"
+    data-amount="499"
+    data-locale="auto">
+  </script>
 </div>
-
-<div>
-  Total: $4.99
-</div>
-
-<article class="payment-area">
-  <% if flash[:error].present? %>
-    <div id="error_explanation">
-      <p><%= flash[:error] %></p>
-    </div>
-  <% end %>
-</article>
-
-<script src="https://checkout.stripe.com/checkout.js"
-  class="stripe-button"
-  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-  data-description="Handwritten card delivered by post"
-  data-amount="499"
-  data-locale="auto">
-</script>
