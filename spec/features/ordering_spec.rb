@@ -39,7 +39,7 @@ describe 'Customizing a card' do
   describe 'Paying for a card' do
     before(:each) { click_button('Submit') }
 
-    describe 'Viewing the payment page', js: true do
+    describe 'Viewing the payment page' do
       describe 'After a valid card has been created' do
         it 'Shows the payment label' do
           expect(page).to have_content "Review Order"
@@ -55,6 +55,11 @@ describe 'Customizing a card' do
 
         it 'Lists total price' do
           expect(page).to have_content 'Total: $4.99'
+        end
+
+        it 'Includes the Stripe checkout button', js: true do
+          expect(page).to have_css '.stripe-button-el'
+          expect(page.find_button('Pay with Card')).to_not be_nil
         end
       end
 

@@ -3,7 +3,6 @@ require 'spec_helper'
 
 require 'capybara/rspec'
 require 'capybara/webkit'
-
 require "selenium/webdriver"
 
 Capybara.register_driver :chrome do |app|
