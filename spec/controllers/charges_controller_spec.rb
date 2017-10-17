@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'stripe'
 
 RSpec.describe ChargesController, type: :controller do
   let(:template) { CardTemplate.create(greeting: "Whoa Nellie", image_file: "wn.png") }
@@ -12,6 +13,7 @@ RSpec.describe ChargesController, type: :controller do
        state: 'CA',
        zip_code: '04294'
      }) }
+  let(:token) { get_test_stripe_token }
 
   describe 'POST create' do
     it 'sets @amount to 499 cents' do
@@ -32,6 +34,27 @@ RSpec.describe ChargesController, type: :controller do
         post :create, params: { card_id: -1 }
         expect(response).to redirect_to '/'
       end
+
+      describe 'if Stripe returns a proper token' do
+        it 'should be a test token' do
+          expect(token[:object]).to eq "token"
+          expect(token[:type]).to eq "card"
+          expect(token[:livemode]).to eq false
+        end
+      end
     end
   end
+end
+
+def get_test_stripe_token
+  Stripe.api_key = ENV['STRIPE_TEST_PUBLISHABLE_KEY']
+
+  token = Stripe::Token.create(
+    :card => {
+      :number => "4242424242424242",
+      :exp_month => 10,
+      :exp_year => 2018,
+      :cvc => "314"
+    },
+  )
 end
