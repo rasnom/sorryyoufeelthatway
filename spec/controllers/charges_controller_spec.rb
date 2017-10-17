@@ -15,21 +15,21 @@ RSpec.describe ChargesController, type: :controller do
 
   describe 'POST create' do
     it 'sets @amount to 499 cents' do
-      post :create
+      post :create, params: { card_id: card.id }
       expect(assigns(:amount)).to eq 499
     end
 
     describe 'if there is a Stripe error' do
       it 'redirects to the show page for the card if possible' do
         post :create, params: { card_id: card.id }
-        # expect(response).to redirect_to card_template_card_path(
-        #   id: card.id,
-        #   card_template_id: card.card_template_id
-        # )
+        expect(response).to redirect_to card_template_card_path(
+          id: card.id,
+          card_template_id: card.card_template_id
+        )
       end
 
-      it 'redirects to the home page if no card id was specified' do
-        post :create
+      it 'redirects to the home page if no card exists' do
+        post :create, params: { card_id: -1 }
         expect(response).to redirect_to '/'
       end
     end
