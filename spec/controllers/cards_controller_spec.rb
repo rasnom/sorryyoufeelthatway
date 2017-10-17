@@ -91,10 +91,14 @@ RSpec.describe CardsController, type: :controller do
         expect(response).to render_template 'show'
       end
 
-      it 'Assigns @template and @card' do
+      it 'Assigns @template' do
         expect(assigns(:template).greeting).to eq 'Whoa Nellie'
+      end
+
+      it 'Assigns @card' do
         expect(assigns(:card).custom_message).to eq 'errrr.....'
       end
+
     end
 
     describe 'If the session_id does not match the current session' do

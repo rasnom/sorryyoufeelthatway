@@ -9,6 +9,5 @@ Rails.application.routes.draw do
     resources :cards, only: [:new, :create, :show]
   end
 
-  resources :charges
-
+  resources :charges, only: [:create]
 end

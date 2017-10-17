@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Customizing a card' do
-  let!(:template) { CardTemplate.create(greeting: "nevermind", image_file: "123.gif") }
+  let!(:template) { CardTemplate.create(greeting: "nevermind", image_file: "sorry_template_0.1.svg") }
   before(:each) { visit "/card_templates/#{template.id}/cards/new"   }
   before(:each) do
     fill_in_card_form(
@@ -42,7 +42,7 @@ describe 'Customizing a card' do
     describe 'Viewing the payment page' do
       describe 'After a valid card has been created' do
         it 'Shows the payment label' do
-          expect(page).to have_content "payment"
+          expect(page).to have_content "Review Order"
         end
 
         it 'Still shows the greeting for the template selected' do
@@ -55,6 +55,11 @@ describe 'Customizing a card' do
 
         it 'Lists total price' do
           expect(page).to have_content 'Total: $4.99'
+        end
+
+        it 'Includes the Stripe checkout button', js: true do
+          expect(page).to have_css '.stripe-button-el'
+          expect(page.find_button('Pay with Card')).to_not be_nil
         end
       end
 
@@ -72,13 +77,12 @@ describe 'Customizing a card' do
         }) }
 
         it 'Does not show the card details and payment section' do
-          visit card_template_card_url(card_template_id: sessionless_card.card_template_id, id: sessionless_card.id)
-          p page
-          expect(page).to_not have_content "payment"
+          visit card_template_card_path(card_template_id: sessionless_card.card_template_id, id: sessionless_card.id)
+          expect(page).to_not have_content "Review Order"
         end
 
         it 'Redirects to the new card page for the relevant template' do
-          visit card_template_card_url(card_template_id: sessionless_card.card_template_id, id: sessionless_card.id)
+          visit card_template_card_path(card_template_id: sessionless_card.card_template_id, id: sessionless_card.id)
           expect(page).to have_content "Customize Your Message"
           expect(page.find("#template-#{template[:id]}-image")).to_not be_nil
         end
