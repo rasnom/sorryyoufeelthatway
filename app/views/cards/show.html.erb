@@ -40,21 +40,24 @@
         Total: $4.99
       </div>
 
-      <article class="payment-area">
-        <% if flash[:error].present? %>
-          <div id="error_explanation">
-            <p><%= flash[:error] %></p>
-          </div>
-        <% end %>
-      </article>
+      <%= form_tag charges_path do %>
+        <article class="payment-area">
+          <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
+        </article>
+
+        <script src="https://checkout.stripe.com/checkout.js"
+          class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Handwritten card delivered by post"
+          data-amount="499"
+          data-locale="auto">
+        </script>
+      <% end %>
+      
     </div>
   </div>
-
-  <script src="https://checkout.stripe.com/checkout.js"
-    class="stripe-button"
-    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-description="Handwritten card delivered by post"
-    data-amount="499"
-    data-locale="auto">
-  </script>
 </div>
