@@ -15,9 +15,28 @@ class ChargesController < ApplicationController
       :currency    => 'usd'
     )
 
+    p "******************************"
+    p "******************************"
+    p "******************************"
+    p "******************************"
+    p "******************************"
+    p "******************************"
+    p "******************************"
+    p "******************************"
+    p customer
+    p "******************************"
+    p charge
   rescue Stripe::CardError => e
+    p 'in rescue'
     flash[:error] = e.message
-    redirect_to '/'
+    if params[:card_id] == nil || Card.find(params[:card_id])
+      redirect_to '/'
+    else
+      card = Card.find(params[:card_id])
+      redirect_to card_template_card_path(
+        id: card.id,
+        card_template_id: card.card_template_id
+      )
     end
-
+  end
 end
