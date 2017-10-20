@@ -14,9 +14,9 @@ Capybara.register_driver :headless_chrome do |app|
     chromeOptions: { args: %w(headless disable-gpu) }
   )
 
-  Capybara::Selenium::Driver.new app,
-    browser: :chrome,
-    desired_capabilities: capabilities
+Capybara::Selenium::Driver.new app,
+  browser: :chrome,
+  desired_capabilities: capabilities
 end
 
 Capybara.javascript_driver = :headless_chrome
