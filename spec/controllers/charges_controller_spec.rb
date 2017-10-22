@@ -42,6 +42,11 @@ RSpec.describe ChargesController, type: :controller, controller: true do
       expect(assigns(:amount)).to eq 499
     end
 
+    it 'assigns @card' do
+      post :create, params: { card_id: card.id }
+      expect(assigns(:card)).to eq Card.find(card.id)
+    end
+
     describe 'if there is a Stripe error' do
       it 'redirects to the show page for the card if possible' do
         post :create, params: { card_id: card.id }
@@ -80,11 +85,11 @@ RSpec.describe ChargesController, type: :controller, controller: true do
         expect(assigns(:charge)["description"]).to eq "Handwritten greeting card"
         expect(assigns(:charge)["outcome"]["network_status"]).to eq "approved_by_network"
         expect(assigns(:charge)["receipt_email"]).to eq customer_email
-        # expect(assigns(:charge)["shipping"]["address"]["line1"]).to eq card.street_address
-        # expect(assigns(:charge)["shipping"]["address"]["city"]).to eq card.city
-        # expect(assigns(:charge)["shipping"]["address"]["postal_code"]).to eq card.zip_code
-        # expect(assigns(:charge)["shipping"]["address"]["state"]).to eq card.state
-        # expect(assigns(:charge)["shipping"]["name"]).to eq card.recipient_name
+        expect(assigns(:charge)["shipping"]["address"]["line1"]).to eq card.street_address
+        expect(assigns(:charge)["shipping"]["address"]["city"]).to eq card.city
+        expect(assigns(:charge)["shipping"]["address"]["postal_code"]).to eq card.zip_code
+        expect(assigns(:charge)["shipping"]["address"]["state"]).to eq card.state
+        expect(assigns(:charge)["shipping"]["name"]).to eq card.recipient_name
       end
     end
   end

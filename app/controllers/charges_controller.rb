@@ -3,20 +3,33 @@ class ChargesController < ApplicationController
   def create
     Stripe.api_key = ENV['STRIPE_TEST_SECRET_KEY']
     @amount = 499
+    unless Card.exists?(charge_params[:card_id])
+      redirect_to '/'
+    else
+      @card = Card.find(charge_params[:card_id])
 
-    customer = Stripe::Customer.create(
-      :email => params[:stripeEmail],
-      :source  => params[:stripeToken]
-    )
+      customer = Stripe::Customer.create(
+        :email => params[:stripeEmail],
+        :source  => params[:stripeToken]
+      )
 
-    @charge = Stripe::Charge.create(
-      :customer      => customer.id,
-      :amount        => @amount,
-      :description   => 'Handwritten greeting card',
-      :currency      => 'usd',
-      :receipt_email => params[:stripeEmail]
-    )
-    pp @charge
+      @charge = Stripe::Charge.create(
+        :customer        => customer.id,
+        :amount          => @amount,
+        :description     => 'Handwritten greeting card',
+        :currency        => 'usd',
+        :receipt_email   => params[:stripeEmail],
+        :shipping        => {
+          :name          => @card.recipient_name,
+          :address       => {
+            :line1       => @card.street_address,
+            :city        => @card.city,
+            :state       => @card.state,
+            :postal_code => @card.zip_code
+          }
+        }
+      )
+    end
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
