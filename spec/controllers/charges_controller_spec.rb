@@ -14,6 +14,7 @@ RSpec.describe ChargesController, type: :controller do
        zip_code: '04294'
      }) }
   let(:token) { get_test_stripe_token }
+  let(:customer_email) { "anybody@indeterminate.net" }
 
   describe 'Stripe API test token' do
     it 'should be a valid test token' do
@@ -41,6 +42,23 @@ RSpec.describe ChargesController, type: :controller do
       it 'redirects to the home page if no card exists' do
         post :create, params: { card_id: -1 }
         expect(response).to redirect_to '/'
+      end
+    end
+
+    describe 'if the Stripe transaction is successful' do
+      let(:valid_post) { post :create, params: {
+        card_id: card.id,
+        stripeEmail: customer_email,
+        stripeToken: token.id
+      } }
+
+      it 'renders the success page' do
+        valid_post
+        expect(response).to render_template 'create'
+      end
+
+      xit 'creates a new charge' do
+        expect(valid_post).to change
       end
     end
   end

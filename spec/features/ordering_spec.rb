@@ -89,6 +89,9 @@ describe 'Customizing a card' do
       end
     end
 
+# add test for showing the flash error if there is a problem with payment
+
+
   end
 
   def fill_in_card_form(custom_message:, signature:, recipient_name:, street_address:, city:, state:, zip_code:)

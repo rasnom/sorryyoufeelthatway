@@ -3,6 +3,8 @@ class ChargesController < ApplicationController
   def create
     Stripe.api_key = ENV['STRIPE_TEST_SECRET_KEY']
     @amount = 499
+    p params
+    p charge_params
 
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
