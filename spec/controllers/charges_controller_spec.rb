@@ -1,9 +1,10 @@
 require 'rails_helper'
 require 'stripe'
 
-RSpec.describe ChargesController, type: :controller do
+RSpec.describe ChargesController, type: :controller, controller: true do
   let(:template) { CardTemplate.create(greeting: "Whoa Nellie", image_file: "wn.png") }
-  let(:card) { Card.create({
+  let(:card) do
+    Card.create({
        card_template_id: template.id,
        custom_message: 'errrr.....',
        signature: '-neemur neemur',
@@ -12,8 +13,19 @@ RSpec.describe ChargesController, type: :controller do
        city: 'Oakland',
        state: 'CA',
        zip_code: '04294'
-     }) }
-  let(:token) { get_test_stripe_token }
+     })
+  end
+  let(:token) do
+    Stripe.api_key = ENV['STRIPE_TEST_PUBLISHABLE_KEY']
+    Stripe::Token.create(
+      :card => {
+        :number => "4242424242424242",
+        :exp_month => 10,
+        :exp_year => 2018,
+        :cvc => "314"
+      },
+    )
+  end
   let(:customer_email) { "anybody@indeterminate.net" }
 
   describe 'Stripe API test token' do
@@ -57,22 +69,11 @@ RSpec.describe ChargesController, type: :controller do
         expect(response).to render_template 'create'
       end
 
-      xit 'creates a new charge' do
-        expect(valid_post).to change
+      it 'creates a new charge' do
+        valid_post
+        expect(assigns(:charge)["status"]).to eq "succeeded"
+        expect(assigns(:charge)["livemode"]).to be false
       end
     end
   end
-end
-
-def get_test_stripe_token
-  Stripe.api_key = ENV['STRIPE_TEST_PUBLISHABLE_KEY']
-
-  token = Stripe::Token.create(
-    :card => {
-      :number => "4242424242424242",
-      :exp_month => 10,
-      :exp_year => 2018,
-      :cvc => "314"
-    },
-  )
 end

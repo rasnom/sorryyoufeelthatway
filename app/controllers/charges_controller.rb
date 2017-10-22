@@ -3,20 +3,19 @@ class ChargesController < ApplicationController
   def create
     Stripe.api_key = ENV['STRIPE_TEST_SECRET_KEY']
     @amount = 499
-    p params
-    p charge_params
 
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :source  => params[:stripeToken]
     )
 
-    charge = Stripe::Charge.create(
+    @charge = Stripe::Charge.create(
       :customer    => customer.id,
       :amount      => @amount,
       :description => 'Rails Stripe customer',
       :currency    => 'usd'
     )
+    pp @charge
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
