@@ -15,6 +15,14 @@ RSpec.describe ChargesController, type: :controller do
      }) }
   let(:token) { get_test_stripe_token }
 
+  describe 'Stripe API test token' do
+    it 'should be a valid test token' do
+      expect(token[:object]).to eq "token"
+      expect(token[:type]).to eq "card"
+      expect(token[:livemode]).to eq false
+    end
+  end
+
   describe 'POST create' do
     it 'sets @amount to 499 cents' do
       post :create, params: { card_id: card.id }
@@ -33,14 +41,6 @@ RSpec.describe ChargesController, type: :controller do
       it 'redirects to the home page if no card exists' do
         post :create, params: { card_id: -1 }
         expect(response).to redirect_to '/'
-      end
-
-      describe 'if Stripe returns a proper token' do
-        it 'should be a test token' do
-          expect(token[:object]).to eq "token"
-          expect(token[:type]).to eq "card"
-          expect(token[:livemode]).to eq false
-        end
       end
     end
   end

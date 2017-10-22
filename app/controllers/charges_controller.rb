@@ -1,8 +1,7 @@
 class ChargesController < ApplicationController
 
   def create
-    p params
-    p charge_params
+    Stripe.api_key = ENV['STRIPE_TEST_SECRET_KEY']
     @amount = 499
 
     customer = Stripe::Customer.create(
@@ -18,7 +17,6 @@ class ChargesController < ApplicationController
     )
 
   rescue Stripe::CardError => e
-    p 'in rescue'
     flash[:error] = e.message
     if Card.exists?(charge_params[:card_id])
       card = Card.find(charge_params[:card_id])
