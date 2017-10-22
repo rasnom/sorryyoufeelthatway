@@ -63,16 +63,28 @@ RSpec.describe ChargesController, type: :controller, controller: true do
         stripeEmail: customer_email,
         stripeToken: token.id
       } }
+      before(:each) { valid_post }
 
       it 'renders the success page' do
-        valid_post
         expect(response).to render_template 'create'
       end
 
       it 'creates a new charge' do
-        valid_post
         expect(assigns(:charge)["status"]).to eq "succeeded"
         expect(assigns(:charge)["livemode"]).to be false
+      end
+
+      it 'includes relevant data and metadata in the charge' do
+        expect(assigns(:charge)["amount"]).to eq assigns(:amount)
+        expect(assigns(:charge)["currency"]).to eq "usd"
+        expect(assigns(:charge)["description"]).to eq "Handwritten greeting card"
+        expect(assigns(:charge)["outcome"]["network_status"]).to eq "approved_by_network"
+        expect(assigns(:charge)["receipt_email"]).to eq customer_email
+        # expect(assigns(:charge)["shipping"]["address"]["line1"]).to eq card.street_address
+        # expect(assigns(:charge)["shipping"]["address"]["city"]).to eq card.city
+        # expect(assigns(:charge)["shipping"]["address"]["postal_code"]).to eq card.zip_code
+        # expect(assigns(:charge)["shipping"]["address"]["state"]).to eq card.state
+        # expect(assigns(:charge)["shipping"]["name"]).to eq card.recipient_name
       end
     end
   end
