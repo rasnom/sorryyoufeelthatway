@@ -3,10 +3,10 @@ class ChargesController < ApplicationController
   def create
     Stripe.api_key = ENV['STRIPE_TEST_SECRET_KEY']
     @amount = 499
-    unless Card.exists?(charge_params[:card_id])
+    unless Card.exists?(params[:card_id])
       redirect_to '/'
     else
-      @card = Card.find(charge_params[:card_id])
+      @card = Card.find(params[:card_id])
 
       customer = Stripe::Customer.create(
         :email => params[:stripeEmail],
@@ -39,8 +39,8 @@ class ChargesController < ApplicationController
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    if Card.exists?(charge_params[:card_id])
-      card = Card.find(charge_params[:card_id])
+    if Card.exists?(params[:card_id])
+      card = Card.find(params[:card_id])
       redirect_to card_template_card_path(
         id: card.id,
         card_template_id: card.card_template_id
@@ -49,11 +49,4 @@ class ChargesController < ApplicationController
       redirect_to '/'
     end
   end
-
-  private
-
-  def charge_params
-    params.permit(:card_id)
-  end
-
 end

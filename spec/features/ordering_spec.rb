@@ -27,13 +27,6 @@ describe 'Customizing a card' do
       click_button('Submit')
       expect(Card.all.count).to eq(card_count + 1)
     end
-
-    xit 'Does not accept form submission without any of the required fields' do
-      # It looks like there is no great way to directly check html5 form
-      # behavior with rspec and capybara. There are tests for preventing a
-      # new card without required fields from being saved, so I think we can
-      # set this aside to possibly revisit later.
-    end
   end
 
   describe 'Paying for a card' do
