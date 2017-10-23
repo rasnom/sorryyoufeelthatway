@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'stripe'
 
 RSpec.describe ChargesController, type: :controller, controller: true do
-  let(:template) { CardTemplate.create(greeting: "Whoa Nellie", image_file: "wn.png") }
+  let(:template) { CardTemplate.create(greeting: 'Whoa Nellie', image_file: 'wn.png') }
   let(:card) do
     Card.create({
        card_template_id: template.id,
@@ -19,19 +19,19 @@ RSpec.describe ChargesController, type: :controller, controller: true do
     Stripe.api_key = ENV['STRIPE_TEST_PUBLISHABLE_KEY']
     Stripe::Token.create(
       :card => {
-        :number => "4242424242424242",
+        :number => '4242424242424242',
         :exp_month => 10,
         :exp_year => 2018,
-        :cvc => "314"
+        :cvc => '314'
       },
     )
   end
-  let(:customer_email) { "anybody@indeterminate.net" }
+  let(:customer_email) { 'anybody@indeterminate.net' }
 
   describe 'Stripe API test token' do
     it 'should be a valid test token' do
-      expect(token[:object]).to eq "token"
-      expect(token[:type]).to eq "card"
+      expect(token[:object]).to eq 'token'
+      expect(token[:type]).to eq 'card'
       expect(token[:livemode]).to eq false
     end
   end
@@ -75,21 +75,31 @@ RSpec.describe ChargesController, type: :controller, controller: true do
       end
 
       it 'creates a new charge' do
-        expect(assigns(:charge)["status"]).to eq "succeeded"
-        expect(assigns(:charge)["livemode"]).to be false
+        expect(assigns(:charge)['status']).to eq 'succeeded'
+        expect(assigns(:charge)['livemode']).to be false
       end
 
-      it 'includes relevant data and metadata in the charge' do
-        expect(assigns(:charge)["amount"]).to eq assigns(:amount)
-        expect(assigns(:charge)["currency"]).to eq "usd"
-        expect(assigns(:charge)["description"]).to eq "Handwritten greeting card"
-        expect(assigns(:charge)["outcome"]["network_status"]).to eq "approved_by_network"
-        expect(assigns(:charge)["receipt_email"]).to eq customer_email
-        expect(assigns(:charge)["shipping"]["address"]["line1"]).to eq card.street_address
-        expect(assigns(:charge)["shipping"]["address"]["city"]).to eq card.city
-        expect(assigns(:charge)["shipping"]["address"]["postal_code"]).to eq card.zip_code
-        expect(assigns(:charge)["shipping"]["address"]["state"]).to eq card.state
-        expect(assigns(:charge)["shipping"]["name"]).to eq card.recipient_name
+      it 'includes basic data in the charge' do
+        expect(assigns(:charge)['amount']).to eq assigns(:amount)
+        expect(assigns(:charge)['currency']).to eq 'usd'
+        expect(assigns(:charge)['description']).to eq 'Handwritten greeting card'
+        expect(assigns(:charge)['outcome']['network_status']).to eq 'approved_by_network'
+        expect(assigns(:charge)['receipt_email']).to eq customer_email
+      end
+
+      it 'includes shipping info in the charge' do
+        expect(assigns(:charge)['shipping']['address']['line1']).to eq card.street_address
+        expect(assigns(:charge)['shipping']['address']['city']).to eq card.city
+        expect(assigns(:charge)['shipping']['address']['postal_code']).to eq card.zip_code
+        expect(assigns(:charge)['shipping']['address']['state']).to eq card.state
+        expect(assigns(:charge)['shipping']['name']).to eq card.recipient_name
+      end
+
+      it 'includes metadata for the card content in the charge' do
+        expect(assigns(:charge)['metadata']['card_id'].to_i).to eq card.id
+        expect(assigns(:charge)['metadata']['greeting']).to eq card.card_template.greeting
+        expect(assigns(:charge)['metadata']['custom_message']).to eq card.custom_message
+        expect(assigns(:charge)['metadata']['signature']).to eq card.signature
       end
     end
   end

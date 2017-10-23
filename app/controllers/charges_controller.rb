@@ -14,19 +14,25 @@ class ChargesController < ApplicationController
       )
 
       @charge = Stripe::Charge.create(
-        :customer        => customer.id,
-        :amount          => @amount,
-        :description     => 'Handwritten greeting card',
-        :currency        => 'usd',
-        :receipt_email   => params[:stripeEmail],
-        :shipping        => {
-          :name          => @card.recipient_name,
-          :address       => {
-            :line1       => @card.street_address,
-            :city        => @card.city,
-            :state       => @card.state,
-            :postal_code => @card.zip_code
+        :customer         => customer.id,
+        :amount           => @amount,
+        :description      => 'Handwritten greeting card',
+        :currency         => 'usd',
+        :receipt_email    => params[:stripeEmail],
+        :shipping         => {
+          :name           => @card.recipient_name,
+          :address        => {
+            :line1        => @card.street_address,
+            :city         => @card.city,
+            :state        => @card.state,
+            :postal_code  => @card.zip_code
           }
+        },
+        :metadata         => {
+          :card_id        => @card.id,
+          :greeting       => @card.card_template.greeting,
+          :custom_message => @card.custom_message,
+          :signature      => @card.signature
         }
       )
     end
