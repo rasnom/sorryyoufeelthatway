@@ -17,7 +17,7 @@
     <div class="col-xs-10 col-md-6">
       <div class="row">
         <div class="col">
-          <div id="recipient-area">
+          <div id="recipient-details">
             <ul>
               <li><%= @card.recipient_name %></li>
               <li><%= @card.street_address %></li>
@@ -31,32 +31,32 @@
       <div class="row">
         <div class="col">
           <div id="custom-card-details">
-            <ul>
-              <li><%= @card.custom_message %></li>
-              <li><%= @card.signature %></li>
-            </ul>
+            <p class="message"><%= @card.custom_message %></p>
+            <p class="signature"><%= @card.signature %></p>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <%= form_tag charges_path do %>
-            <article class="payment-area">
-              <% if flash[:error].present? %>
-                <div id="error_explanation">
-                  <p><%= flash[:error] %></p>
-                </div>
-              <% end %>
-            </article>
+          <div id="payment-buttons">
+            <%= form_tag charges_path do %>
+              <article class="payment-area">
+                <% if flash[:error].present? %>
+                  <div id="error_explanation">
+                    <p><%= flash[:error] %></p>
+                  </div>
+                <% end %>
+              </article>
 
-            <script src="https://checkout.stripe.com/checkout.js"
-              class="stripe-button"
-              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-              data-description="Handwritten card delivered by post"
-              data-amount="499"
-              data-locale="auto">
-            </script>
-          <% end %>
+              <script src="https://checkout.stripe.com/checkout.js"
+                class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="Handwritten card delivered by post"
+                data-amount="499"
+                data-locale="auto">
+              </script>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
