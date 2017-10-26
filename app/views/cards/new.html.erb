@@ -1,16 +1,18 @@
 <div class="container-fluid">
 
-  <div class="row" id="header">
-  <div class="col">
-    <h1> Customize Your Message </h1>
-  </div>
-  </div>
-  <div class="row" id="subtitle">
-    <div class="col">
-      <p>  </p>
+  <div class="header">
+    <div class="row">
+      <div class="col">
+        <h1> Customize Your Message </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>  </p>
+      </div>
     </div>
   </div>
-
+  
   <%= form_tag card_template_cards_path(@template.id), {class: "order-form"} do %>
 
     <input type="hidden" name="card[card_template_id]" value="<%= @template.id %>">
