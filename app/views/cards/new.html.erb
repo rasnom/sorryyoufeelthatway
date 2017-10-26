@@ -17,7 +17,53 @@
 
     <div class="row new-main-area">
       <div class="col-xs-10 col-md-6">
-        address region
+        <div class="field row">
+          <div class="col-4">
+            <label class="text-right" for="card_recipient_name">Recipient Name
+            </label>
+          </div>
+          <div class="col-8">
+            <input required="required" class="form-control" type="text"
+              name="card[recipient_name]" id="card_recipient_name" />
+          </div>
+        </div>
+        <div class="field row">
+          <div class="col-4">
+            <label class="text-right" for="card_street_address">Address
+            </label>
+          </div>
+          <div class="col-8">
+            <input required="required" class="form-control" type="text"
+              name="card[street_address]" id="card_street_address" />
+          </div>
+        </div>
+        <div class="field row">
+          <div class="col-4">
+            <label class="text-right" for="card_city">City</label>
+          </div>
+          <div class="col-8">
+            <input required="required" class="form-control" type="text"
+              name="card[city]" id="card_city" />
+          </div>
+        </div>
+        <div class="field row">
+          <div class="col-4">
+            <label class="text-right" for="card_state">State</label>
+          </div>
+          <div class="col-8">
+            <input required="required" class="form-control" type="text"
+              name="card[state]" id="card_state" />
+          </div>
+        </div>
+        <div class="field row">
+          <div class="col-4">
+            <label class="text-right" for="card_zip_code">Zip Code</label>
+          </div>
+          <div class="col-8">
+            <input required="required" class="form-control" type="text"
+              name="card[zip_code]" id="card_zip_code" />
+          </div>
+        </div>
       </div>
       <div class="col-xs-10 col-md-6">
         <img id="template-<%= @template.id %>-image"
@@ -30,36 +76,24 @@
       </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-6">
         <div class="form-group">
           <div class="field row">
-            <label class="col-4 text-right" for="card_recipient_name">Recipient Name</label>
-            <input required="required" class="col-8 form-control" type="text" name="card[recipient_name]" id="card_recipient_name" />
           </div>
           <div class="field row">
-            <label class="col-4 text-right" for="card_street_address">Address</label>
-            <input required="required" class="col-8 form-control" type="text" name="card[street_address]" id="card_street_address" />
           </div>
           <div class="field row">
-            <label class="col-4 text-right" for="card_city">City</label>
-            <input required="required" class="col-8 form-control" type="text" name="card[city]" id="card_city" />
           </div>
           <div class="field row">
-            <label class="col-4 text-right" for="card_state">State</label>
-            <input required="required" class="col-8 form-control" type="text" name="card[state]" id="card_state" />
           </div>
           <div class="field row">
-            <label class="col-4 text-right" for="card_zip_code">Zip Code</label>
-            <input required="required" class="col-8 form-control" type="text" name="card[zip_code]" id="card_zip_code" />
           </div>
         </div>
       </div>
       <div class="col-3">
-
-
       </div>
-    </div>
+    </div> -->
 
     <div class="form-group">
       <div class="field row">
