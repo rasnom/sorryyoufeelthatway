@@ -25,14 +25,13 @@ p, div {
   margin-bottom: 40px;
 }
 
-.order-form {
-}
-
 .form-field-label {
   text-align: right;
   padding-right: 0;
 }
 
-#recipient-area {
+#recipient-area, #custom-card-details {
+  background-color: white;
   color: black;
+  border-radius: 5px;
 }
