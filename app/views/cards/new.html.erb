@@ -20,7 +20,10 @@
         address region
       </div>
       <div class="col-xs-10 col-md-6">
-        template image region
+        <img id="template-<%= @template.id %>-image"
+             src="/assets/<%= @template.image_file %>"
+             class="img-fluid img-thumbnail"
+             alt="<%= @template.greeting %>">
       </div>
       <div class="col-xs-10 col-md-6">
         custom content region
