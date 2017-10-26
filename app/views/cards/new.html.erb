@@ -12,12 +12,12 @@
       </div>
     </div>
   </div>
-  
+
   <%= form_tag card_template_cards_path(@template.id), {class: "order-form"} do %>
 
     <input type="hidden" name="card[card_template_id]" value="<%= @template.id %>">
 
-    <div class="row new-main-area">
+    <div class="row">
       <div class="col-xs-10 col-md-6">
         <div class="field row">
           <div class="col-4 form-field-label">

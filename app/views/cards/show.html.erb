@@ -1,18 +1,20 @@
 <div class="container-fluid">
 
-  <h2> Review Order </h2>
+  <div class="header">
+    <div class="row">
+      <div class="col">
+        <h1> Review Order </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p> Total: $4.99 </p>
+      </div>
+    </div>
+  </div>
 
   <div class="row">
-    <div class="col-6">
-      <img id="template-<%= @template.id %>-image"
-           src="/assets/<%= @template.image_file %>"
-           class="img-fluid img-thumbnail"
-           alt="<%= @template.greeting %>"
-      >
-
-    </div>
-
-    <div class="col-6 card">
+    <div class="col-xs-10 col-md-6">
       <div id="recipient-area">
         <ul>
           <li><%= @card.recipient_name %></li>
@@ -22,22 +24,11 @@
           <li><%= @card.zip_code %></li>
         </ul>
       </div>
-    </div>
-
-    <div class="col-6"
       <div id="custom-card-details">
         <ul>
           <li><%= @card.custom_message %></li>
           <li><%= @card.signature %></li>
         </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-6">
-      <div>
-        Total: $4.99
       </div>
 
       <%= form_tag charges_path do %>
@@ -57,7 +48,14 @@
           data-locale="auto">
         </script>
       <% end %>
-      
+    </div>
+
+    <div class="col-xs-10 col-md-6">
+      <img id="template-<%= @template.id %>-image"
+           src="/assets/<%= @template.image_file %>"
+           class="img-fluid img-thumbnail"
+           alt="<%= @template.greeting %>"
+      >
     </div>
   </div>
 </div>
