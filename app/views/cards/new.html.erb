@@ -55,7 +55,7 @@
               name="card[state]" id="card_state" />
           </div>
         </div>
-        <div class="field row">
+        <div class="field row form-group">
           <div class="col-4 form-field-label">
             <label for="card_zip_code">Zip Code</label>
           </div>
@@ -64,14 +64,6 @@
               name="card[zip_code]" id="card_zip_code" />
           </div>
         </div>
-      </div>
-      <div class="col-xs-10 col-md-6">
-        <img id="template-<%= @template.id %>-image"
-             src="/assets/<%= @template.image_file %>"
-             class="img-fluid img-thumbnail"
-             alt="<%= @template.greeting %>">
-      </div>
-      <div class="col-xs-10 col-md-6">
         <div class="field row form-group">
           <div class="col-4 form-field-label">
             <label for="card_custom_message">Custom Message</label>
@@ -96,6 +88,12 @@
             <button type="submit" class="btn btn-default">Submit</button>
           </div>
         </div>
+      </div>
+      <div class="col-xs-10 col-md-6">
+        <img id="template-<%= @template.id %>-image"
+             src="/assets/<%= @template.image_file %>"
+             class="img-fluid img-thumbnail"
+             alt="<%= @template.greeting %>">
       </div>
     </div>
 
