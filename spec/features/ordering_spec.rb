@@ -80,10 +80,15 @@ describe 'Customizing a card' do
           expect(page.find("#template-#{template[:id]}-image")).to_not be_nil
         end
       end
+
+      describe 'If the user wants to go back and edit the card' do
+        it 'Displays a back button' do
+          expect(page.find_button('Back')).to_not be_nil
+        end
+      end
     end
 
 # add test for showing the flash error if there is a problem with payment
-
 
   end
 
