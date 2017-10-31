@@ -2,17 +2,18 @@ require 'rails_helper'
 
 describe 'Customizing a card' do
   let!(:template) { CardTemplate.create(greeting: "nevermind", image_file: "sorry_template_0.1.svg") }
-  before(:each) { visit "/card_templates/#{template.id}/cards/new"   }
+  let!(:card_data) {{
+    custom_message: 'Not having the sorry',
+    signature: 'Kindly, James',
+    recipient_name: 'Bad Friend',
+    street_address: '123 Main Street',
+    city: 'Oakland',
+    state: 'CA',
+    zip_code: '94607'
+  }}
   before(:each) do
-    fill_in_card_form(
-      custom_message: 'Not having the sorry',
-      signature: 'Kindly, James',
-      recipient_name: 'Bad Friend',
-      street_address: '123 Main Street',
-      city: 'Oakland',
-      state: 'CA',
-      zip_code: '94607'
-    )
+    visit "/card_templates/#{template.id}/cards/new"
+    fill_in_card_form(card_data)
   end
 
   describe 'Viewing the customization page' do
@@ -82,13 +83,16 @@ describe 'Customizing a card' do
       end
 
       describe 'If the user wants to go back and edit the card' do
-        it 'Displays a back button' do
-          expect(page.find_button('Back')).to_not be_nil
+        it 'they can click the back button to edit' do
+          click_button('Back')
+          expect(page).to have_content "Customize Your Message"
+          expect(page).to have_content card_data["custom_message"]
+          expect(page.find("#template-#{template[:id]}-image")).to_not be_nil
         end
       end
     end
 
-# add test for showing the flash error if there is a problem with payment
+    # add test for showing the flash error if there is a problem with payment
 
   end
 
