@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CardsController, type: :controller, cards_controller: true do
-  let(:template) { CardTemplate.create(greeting: "Whoa Nellie", image_file: "wn.png") }
+  let!(:template) { CardTemplate.create(greeting: "Whoa Nellie", image_file: "wn.png") }
   let(:card_params) {
      {
        card_template_id: template.id,
@@ -71,17 +71,7 @@ RSpec.describe CardsController, type: :controller, cards_controller: true do
   end
 
   describe 'GET show' do
-    let!(:template) { CardTemplate.create(greeting: "Whoa Nellie", image_file: "wn.png") }
-    let!(:card) { Card.create({
-      card_template_id: template.id,
-      custom_message: 'errrr.....',
-      signature: '-neemur neemur',
-      recipient_name: 'the bees',
-      street_address: 'over yonder',
-      city: 'Oakland',
-      state: 'CA',
-      zip_code: '04294'
-    }) }
+    let!(:card) { Card.create(card_params) }
 
     describe 'If the session_id of the card matches the current session' do
       before(:each) { Card.find(card.id).update(session_id: session.id) }
