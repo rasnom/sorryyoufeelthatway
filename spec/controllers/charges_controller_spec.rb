@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'stripe'
 
-RSpec.describe ChargesController, type: :controller, controller: true do
+RSpec.describe ChargesController, type: :controller, charges_controller: true do
   let(:template) { CardTemplate.create(greeting: 'Whoa Nellie', image_file: 'wn.png') }
   let(:card) do
     Card.create({

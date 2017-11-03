@@ -50,6 +50,9 @@ class CardsController < ApplicationController
     end
   end
 
+  def edit
+  end
+  
   private
 
   def card_params

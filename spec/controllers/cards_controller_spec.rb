@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CardsController, type: :controller do
+RSpec.describe CardsController, type: :controller, cards_controller: true do
   let(:template) { CardTemplate.create(greeting: "Whoa Nellie", image_file: "wn.png") }
   let(:card_params) {
      {
@@ -107,6 +107,15 @@ RSpec.describe CardsController, type: :controller do
       it 'Redirects to the new card form for the relevant template' do
         expect(response).to redirect_to new_card_template_card_url(card_template_id: template.id)
       end
+    end
+  end
+
+  describe 'GET edit' do
+    let(:card) { Card.create(card_params) }
+    before(:each) { get :edit, params: { card_template_id: template.id, id: card.id } }
+
+    it 'Renders the edit view' do
+      expect(response).to render_template "edit"
     end
   end
 end
