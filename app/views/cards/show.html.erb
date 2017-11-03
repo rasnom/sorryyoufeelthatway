@@ -38,6 +38,9 @@
       </div>
       <div class="row">
         <div class="col">
+          <button onclick="location.href='<%= edit_card_template_card_path %>;'"
+            role="button" class="btn btn-default">Edit</button>
+
           <div id="payment-buttons">
             <%= form_tag charges_path do %>
               <article class="payment-area">
@@ -47,8 +50,6 @@
                   </div>
                 <% end %>
               </article>
-
-              <button href="" role="button" class="btn btn-default">Edit</button>
 
               <script src="https://checkout.stripe.com/checkout.js"
                 class="stripe-button"
