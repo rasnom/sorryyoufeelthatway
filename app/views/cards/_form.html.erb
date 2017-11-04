@@ -1,0 +1,88 @@
+<%= form_tag card_template_cards_path(@template.id), {class: "order-form"} do %>
+
+  <input type="hidden" name="card[card_template_id]" value="<%= @template.id %>">
+
+  <div class="row">
+    <div class="col-xs-10 col-md-6">
+      <div class="field row">
+        <div class="col-4 form-field-label">
+          <label for="card_recipient_name">Recipient Name
+          </label>
+        </div>
+        <div class="col-8">
+          <input required="required" class="form-control" type="text"
+            name="card[recipient_name]" id="card_recipient_name" />
+        </div>
+      </div>
+      <div class="field row">
+        <div class="col-4 form-field-label">
+          <label for="card_street_address">Address
+          </label>
+        </div>
+        <div class="col-8">
+          <input required="required" class="form-control" type="text"
+            name="card[street_address]" id="card_street_address" />
+        </div>
+      </div>
+      <div class="field row">
+        <div class="col-4 form-field-label">
+          <label for="card_city">City</label>
+        </div>
+        <div class="col-8">
+          <input required="required" class="form-control" type="text"
+            name="card[city]" id="card_city" />
+        </div>
+      </div>
+      <div class="field row">
+        <div class="col-4 form-field-label">
+          <label for="card_state">State</label>
+        </div>
+        <div class="col-8">
+          <input required="required" class="form-control" type="text"
+            name="card[state]" id="card_state" />
+        </div>
+      </div>
+      <div class="field row form-group">
+        <div class="col-4 form-field-label">
+          <label for="card_zip_code">Zip Code</label>
+        </div>
+        <div class="col-8">
+          <input required="required" class="form-control" type="text"
+            name="card[zip_code]" id="card_zip_code" />
+        </div>
+      </div>
+      <div class="field row form-group">
+        <div class="col-4 form-field-label">
+          <label for="card_custom_message">Custom Message</label>
+        </div>
+        <div class="col-8">
+          <textarea class="form-control" rows="3" name="card[custom_message]"
+            id="card_custom_message">
+          </textarea>
+        </div>
+      </div>
+      <div class="field row form-group">
+        <div class="col-4 form-field-label">
+          <label for="card_signature">Signature</label>
+        </div>
+        <div class="col-8">
+          <input class="form-control" type="text" name="card[signature]"
+            id="card_signature" />
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-4"></div>
+        <div class="col-8">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-10 col-md-6">
+      <img id="template-<%= @template.id %>-image"
+           src="/assets/<%= @template.image_file %>"
+           class="img-fluid img-thumbnail"
+           alt="<%= @template.greeting %>">
+    </div>
+  </div>
+
+<% end %>
