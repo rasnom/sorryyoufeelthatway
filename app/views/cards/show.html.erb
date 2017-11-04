@@ -16,7 +16,10 @@
   <div class="row">
     <div class="col-xs-10 col-md-6">
       <div class="row">
-        <div class="col">
+        <div class="col-4 form-field-label">
+          Recipient
+        </div>
+        <div class="col-8">
           <div id="recipient-details">
             <ul>
               <li><%= @card.recipient_name %></li>
@@ -29,7 +32,10 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-4 form-field-label">
+          Message
+        </div>
+        <div class="col-8">
           <div id="custom-card-details">
             <p class="message"><%= @card.custom_message %></p>
             <p class="signature"><%= @card.signature %></p>
@@ -37,12 +43,10 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
-          <a href="<%= edit_card_template_card_path %>">
-            <button role="button" class="btn btn-default">Edit</button>
-          </a>
-
+        <div class="col-4"> </div>
+        <div class="col-8">
           <div id="payment-buttons">
+
             <%= form_tag charges_path do %>
               <article class="payment-area">
                 <% if flash[:error].present? %>
@@ -51,6 +55,10 @@
                   </div>
                 <% end %>
               </article>
+
+              <a href="<%= edit_card_template_card_path %>">
+                <button role="button" class="btn btn-default">Edit</button>
+              </a>
 
               <script src="https://checkout.stripe.com/checkout.js"
                 class="stripe-button"
