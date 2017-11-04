@@ -1,7 +1,7 @@
 class ChargesController < ApplicationController
 
   def create
-    Stripe.api_key = ENV['STRIPE_TEST_SECRET_KEY']
+    Stripe.api_key = Rails.configuration.stripe[:secret_key]
     @amount = 499
     unless Card.exists?(params[:card_id])
       redirect_to '/'

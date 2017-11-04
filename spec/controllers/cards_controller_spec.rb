@@ -107,5 +107,6 @@ RSpec.describe CardsController, type: :controller, cards_controller: true do
     it 'Renders the edit view' do
       expect(response).to render_template "edit"
     end
+
   end
 end
