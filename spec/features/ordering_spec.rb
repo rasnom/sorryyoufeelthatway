@@ -85,7 +85,7 @@ describe 'Customizing a card' do
       describe 'If the user wants to go back and edit the card' do
         it 'they can click the back button to edit' do
           click_button('Edit')
-          expect(page).to have_content "Customize Your Message"
+          expect(page).to have_content "Edit Your Message"
           expect(page).to have_content card_data["custom_message"]
           expect(page.find("#template-#{template[:id]}-image")).to_not be_nil
         end
