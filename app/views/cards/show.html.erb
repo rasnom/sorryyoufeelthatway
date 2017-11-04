@@ -38,6 +38,10 @@
       </div>
       <div class="row">
         <div class="col">
+          <a href="<%= edit_card_template_card_path %>">
+            <button role="button" class="btn btn-default">Edit</button>
+          </a>
+
           <div id="payment-buttons">
             <%= form_tag charges_path do %>
               <article class="payment-area">

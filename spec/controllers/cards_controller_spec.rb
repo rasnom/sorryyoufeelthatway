@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe CardsController, type: :controller do
-  let(:template) { CardTemplate.create(greeting: "Whoa Nellie", image_file: "wn.png") }
+RSpec.describe CardsController, type: :controller, cards_controller: true do
+  let!(:template) { CardTemplate.create(greeting: "Whoa Nellie", image_file: "wn.png") }
   let(:card_params) {
      {
        card_template_id: template.id,
@@ -71,17 +71,7 @@ RSpec.describe CardsController, type: :controller do
   end
 
   describe 'GET show' do
-    let!(:template) { CardTemplate.create(greeting: "Whoa Nellie", image_file: "wn.png") }
-    let!(:card) { Card.create({
-      card_template_id: template.id,
-      custom_message: 'errrr.....',
-      signature: '-neemur neemur',
-      recipient_name: 'the bees',
-      street_address: 'over yonder',
-      city: 'Oakland',
-      state: 'CA',
-      zip_code: '04294'
-    }) }
+    let!(:card) { Card.create(card_params) }
 
     describe 'If the session_id of the card matches the current session' do
       before(:each) { Card.find(card.id).update(session_id: session.id) }
@@ -108,5 +98,15 @@ RSpec.describe CardsController, type: :controller do
         expect(response).to redirect_to new_card_template_card_url(card_template_id: template.id)
       end
     end
+  end
+
+  describe 'GET edit' do
+    let(:card) { Card.create(card_params) }
+    before(:each) { get :edit, params: { card_template_id: template.id, id: card.id } }
+
+    it 'Renders the edit view' do
+      expect(response).to render_template "edit"
+    end
+
   end
 end

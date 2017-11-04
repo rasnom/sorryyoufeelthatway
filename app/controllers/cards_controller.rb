@@ -50,6 +50,10 @@ class CardsController < ApplicationController
     end
   end
 
+  def edit
+    @template = CardTemplate.find(params[:card_template_id])
+  end
+
   private
 
   def card_params

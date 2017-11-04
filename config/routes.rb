@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/congrats', to: 'static#congrats'
 
   resources :card_templates, only: [:index] do
-    resources :cards, only: [:new, :create, :show]
+    resources :cards, except: [:index, :update, :destroy]
   end
 
   resources :charges, only: [:create]
