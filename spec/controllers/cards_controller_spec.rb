@@ -118,7 +118,6 @@ RSpec.describe CardsController, type: :controller, cards_controller: true do
       it 'Assigns @card' do
         expect(assigns(:card).custom_message).to eq 'errrr.....'
       end
-
     end
 
     describe 'If the session_id does not match the current session' do

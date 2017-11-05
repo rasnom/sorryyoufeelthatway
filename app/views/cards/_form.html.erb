@@ -1,3 +1,5 @@
+<% @card ||= Card.new %>
+
 <%= form_tag card_template_cards_path(@template.id), {class: "order-form"} do %>
 
   <input type="hidden" name="card[card_template_id]" value="<%= @template.id %>">
@@ -11,7 +13,8 @@
         </div>
         <div class="col-8">
           <input required="required" class="form-control" type="text"
-            name="card[recipient_name]" id="card_recipient_name" />
+            name="card[recipient_name]" id="card_recipient_name"
+            value="<%= @card.recipient_name %>"/>
         </div>
       </div>
       <div class="field row">
@@ -21,7 +24,8 @@
         </div>
         <div class="col-8">
           <input required="required" class="form-control" type="text"
-            name="card[street_address]" id="card_street_address" />
+            name="card[street_address]" id="card_street_address"
+            value="<%= @card.street_address %>" />
         </div>
       </div>
       <div class="field row">
@@ -30,7 +34,8 @@
         </div>
         <div class="col-8">
           <input required="required" class="form-control" type="text"
-            name="card[city]" id="card_city" />
+            name="card[city]" id="card_city"
+            value="<%= @card.city %>" />
         </div>
       </div>
       <div class="field row">
@@ -39,7 +44,8 @@
         </div>
         <div class="col-8">
           <input required="required" class="form-control" type="text"
-            name="card[state]" id="card_state" />
+            name="card[state]" id="card_state"
+            value="<%= @card.state %>" />
         </div>
       </div>
       <div class="field row form-group">
@@ -48,7 +54,8 @@
         </div>
         <div class="col-8">
           <input required="required" class="form-control" type="text"
-            name="card[zip_code]" id="card_zip_code" />
+            name="card[zip_code]" id="card_zip_code"
+            value="<%= @card.zip_code %>" />
         </div>
       </div>
       <div class="field row form-group">
@@ -57,8 +64,7 @@
         </div>
         <div class="col-8">
           <textarea class="form-control" rows="3" name="card[custom_message]"
-            id="card_custom_message">
-          </textarea>
+            id="card_custom_message"><%= @card.custom_message %></textarea>
         </div>
       </div>
       <div class="field row form-group">
@@ -67,7 +73,7 @@
         </div>
         <div class="col-8">
           <input class="form-control" type="text" name="card[signature]"
-            id="card_signature" />
+            id="card_signature" value="<%= @card.signature %>" />
         </div>
       </div>
       <div class="row form-group">
