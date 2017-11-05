@@ -82,12 +82,18 @@ describe 'Customizing a card' do
         end
       end
 
-      describe 'If the user wants to go back and edit the card' do
-        it 'they can click the back button to edit' do
-          click_link('Edit')
+      describe 'If the user clicks the "Edit" button' do
+        before(:each) { click_link('Edit') }
+
+        it 'Takes the user to the edit page for the card' do
           expect(page).to have_content "Edit Your Message"
-          expect(page).to have_content card_data["custom_message"]
           expect(page.find("#template-#{template[:id]}-image")).to_not be_nil
+        end
+
+        it 'Pre-fills the form fields' do
+          expect(find_field('Recipient Name').value).to eq card_data[:recipient_name]
+          expect(find_field('City').value).to eq card_data[:city]
+          expect(find_field('Custom Message').value).to eq card_data[:custom_message]
         end
       end
     end

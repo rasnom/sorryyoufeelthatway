@@ -102,11 +102,32 @@ RSpec.describe CardsController, type: :controller, cards_controller: true do
 
   describe 'GET edit' do
     let(:card) { Card.create(card_params) }
-    before(:each) { get :edit, params: { card_template_id: template.id, id: card.id } }
 
-    it 'Renders the edit view' do
-      expect(response).to render_template "edit"
+    describe 'If the session_id of the card matches the current session' do
+      before(:each) { Card.find(card.id).update(session_id: session.id) }
+      before(:each) { get :edit, params: { card_template_id: template.id, id: card.id } }
+
+      it 'Renders the edit view' do
+        expect(response).to render_template "edit"
+      end
+
+      it 'Assigns @template' do
+        expect(assigns(:template).greeting).to eq 'Whoa Nellie'
+      end
+
+      it 'Assigns @card' do
+        expect(assigns(:card).custom_message).to eq 'errrr.....'
+      end
     end
 
+    describe 'If the session_id does not match the current session' do
+      before(:each) { Card.find(card.id).update(session_id: "some nonsense") }
+      before(:each) { get :edit, params: { card_template_id: template.id, id: card.id } }
+
+      it 'Redirects to the new card form for the relevant template' do
+        expect(response).to redirect_to new_card_template_card_url(card_template_id: template.id)
+      end
+    end
   end
+
 end
