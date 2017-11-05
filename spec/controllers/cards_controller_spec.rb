@@ -123,7 +123,7 @@ RSpec.describe CardsController, type: :controller, cards_controller: true do
 
     describe 'If the session_id does not match the current session' do
       before(:each) { Card.find(card.id).update(session_id: "some nonsense") }
-      before(:each) { get :show, params: { card_template_id: template.id, id: card.id } }
+      before(:each) { get :edit, params: { card_template_id: template.id, id: card.id } }
 
       it 'Redirects to the new card form for the relevant template' do
         expect(response).to redirect_to new_card_template_card_url(card_template_id: template.id)
