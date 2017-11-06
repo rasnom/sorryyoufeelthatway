@@ -34,6 +34,9 @@ class CardsController < ApplicationController
     end
   end
 
+  def update
+  end
+
   private
 
   def card_params
