@@ -19,22 +19,30 @@ class CardsController < ApplicationController
   def show
     @template = CardTemplate.find(params[:card_template_id])
     @card = Card.find(params[:id])
-
-    unless @card.session_id == session.id
-      redirect_to new_card_template_card_url(card_template_id: @template.id)
-    end
+    check_session
   end
 
   def edit
     @template = CardTemplate.find(params[:card_template_id])
     @card = Card.find(params[:id])
+    check_session
+  end
 
+  def update
+    @template = CardTemplate.find(params[:card_template_id])
+    @card = Card.find(params[:id])
+    check_session
+
+    @card.update(card_params)
+  end
+
+  private
+
+  def check_session
     unless @card.session_id == session.id
       redirect_to new_card_template_card_url(card_template_id: @template.id)
     end
   end
-
-  private
 
   def card_params
     params.require(:card).permit(:custom_message, :signature, :recipient_name,
