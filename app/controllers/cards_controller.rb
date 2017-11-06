@@ -32,6 +32,8 @@ class CardsController < ApplicationController
     @template = CardTemplate.find(params[:card_template_id])
     @card = Card.find(params[:id])
     check_session
+
+    @card.update(card_params)
   end
 
   private

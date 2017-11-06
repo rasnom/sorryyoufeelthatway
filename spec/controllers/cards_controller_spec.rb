@@ -132,18 +132,41 @@ RSpec.describe CardsController, type: :controller, cards_controller: true do
 
   describe 'POST update' do
     let(:card) { Card.create(card_params) }
+    let(:new_card_params) {{
+           card_template_id: template.id,
+           custom_message: 'an unexpected turn',
+           signature: '-the bees',
+           recipient_name: 'that darn lemur',
+           street_address: 'the dark forest',
+           city: 'Mopeland',
+           state: 'ME',
+           zip_code: '02494'
+         }}
 
     describe 'If the session_id of the card matches the current session' do
       before(:each) { Card.find(card.id).update(session_id: session.id) }
-      before(:each) { post :update, params: { card_template_id: template.id, id: card.id } }
+      before(:each) { post :update, params: {
+        card_template_id: template.id,
+        id: card.id,
+        card: new_card_params
+      } }
 
+      it 'Updates @card' do
+        expect(assigns(:card).custom_message).to eq new_card_params[:custom_message]
+        expect(assigns(:card).state).to eq new_card_params[:state]
+        expect(assigns(:card).zip_code).to eq new_card_params[:zip_code]
+      end
 
     end
 
     describe 'If the session_id does not match the current session' do
       before(:each) { Card.find(card.id).update(session_id: "some nonsense") }
-      before(:each) { post :update, params: { card_template_id: template.id, id: card.id } }
-
+      before(:each) { post :update, params: {
+        card_template_id: template.id,
+        id: card.id,
+        card: new_card_params
+      } }
+      
       it 'Redirects to the new card form for the relevant template' do
         expect(response).to redirect_to new_card_template_card_url(card_template_id: template.id)
       end
