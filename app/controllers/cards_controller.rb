@@ -35,6 +35,12 @@ class CardsController < ApplicationController
   end
 
   def update
+    @template = CardTemplate.find(params[:card_template_id])
+    @card = Card.find(params[:id])
+
+    unless @card.session_id == session.id
+      redirect_to new_card_template_card_url(card_template_id: @template.id)
+    end
   end
 
   private
