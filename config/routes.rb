@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get '/congrats', to: 'static#congrats'
 
+  get '/admin', to: 'admin#index'
+
   resources :card_templates, only: [:index] do
     resources :cards, except: [:index, :destroy]
   end
