@@ -7,11 +7,13 @@ Rails.application.routes.draw do
 
   get '/admin', to: 'admin#index'
 
+  get '/admin/signout', to: 'sessions#destroy'
+
   resources :card_templates, only: [:index] do
     resources :cards, except: [:index, :destroy]
   end
 
   resources :charges, only: [:create]
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:create, :destroy]
 end

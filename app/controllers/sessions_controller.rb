@@ -10,4 +10,9 @@ class SessionsController < ApplicationController
     redirect_back(fallback_location: '/')
   end
 
+  def destroy
+    session[:user_id] = nil
+    redirect_back(fallback_location: '/')
+  end
+
 end

@@ -6,19 +6,19 @@ RSpec.describe SessionsController, type: :controller, session: true do
   describe 'create' do
     it 'redirects to the page it was called from' do
       request.env["HTTP_REFERER"] = "previous_location"
-      get :create
+      post :create
       expect(response).to redirect_to "previous_location"
     end
 
     it 'does nothing to the session if there is no users' do
       session[:user_id] = "test override"
-      get :create
+      post :create
       expect(session[:user_id]).to eq "test override"
     end
 
     describe 'with a valid user login' do
       before(:each) do
-        get :create, params: {
+        post :create, params: {
           username: admin_user.username,
           password: admin_user.password
         }
@@ -36,12 +36,27 @@ RSpec.describe SessionsController, type: :controller, session: true do
     describe 'with an invalid login' do
 
       it 'does not set the user id to the session' do
-        get :create, params: {
+        post :create, params: {
           username: admin_user.username,
           password: "something random"
         }
         expect(session[:user_id]).to be_nil
       end
     end
+  end
+
+  describe 'destroy' do
+    it 'sets the user id in the session to nil' do
+      session[:user_id] = "something"
+      delete :destroy
+      expect(session[:user_id]).to be_nil
+    end
+
+    it 'redirects to the page it was called from' do
+      request.env["HTTP_REFERER"] = "previous_location"
+      delete :destroy
+      expect(response).to redirect_to "previous_location"
+    end
+
   end
 end
