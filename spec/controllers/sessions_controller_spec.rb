@@ -10,6 +10,12 @@ RSpec.describe SessionsController, type: :controller, session: true do
       expect(response).to redirect_to "previous_location"
     end
 
+    it 'does nothing to the session if there is no users' do
+      session[:user_id] = "test override"
+      get :create
+      expect(session[:user_id]).to eq "test override"
+    end
+
     describe 'with a valid user login' do
       before(:each) do
         get :create, params: {
@@ -28,6 +34,7 @@ RSpec.describe SessionsController, type: :controller, session: true do
     end
 
     describe 'with an invalid login' do
+
       it 'does not set the user id to the session' do
         get :create, params: {
           username: admin_user.username,
