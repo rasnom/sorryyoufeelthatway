@@ -14,11 +14,11 @@ RSpec.describe 'Admin page', admin: true do
 
   describe 'if an admin logs in' do
     let(:test_password) { "eieio" }
-    let!(:admin_user) { AdminUser.create(username: "test_admin", password: "test_password") }
+    let!(:admin_user) { AdminUser.create(username: "test_admin", password: test_password) }
     before(:each) do
       fill_in 'username', with: admin_user.username
       fill_in 'password', with: test_password
-      click_button 'Login'
+      click_button 'Submit'
     end
 
     it 'displays a list of ordered cards' do

@@ -1,1 +1,9 @@
 <h1> Admin Login </h1>
+
+<%= form_tag("/sessions", method: "post") do %>
+  <label for="username">username</label>
+  <input required="required" type="text" name="username" id="username" />
+  <label for="password">password</label>
+  <input required="required" type="text" name="password" id="password" />
+  <button type="submit" class="btn btn-default">Submit</button>
+<% end %>
