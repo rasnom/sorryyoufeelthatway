@@ -34,7 +34,6 @@ RSpec.describe SessionsController, type: :controller, session: true do
     end
 
     describe 'with an invalid login' do
-
       it 'does not set the user id to the session' do
         post :create, params: {
           username: admin_user.username,
@@ -57,6 +56,5 @@ RSpec.describe SessionsController, type: :controller, session: true do
       delete :destroy
       expect(response).to redirect_to "previous_location"
     end
-
   end
 end
