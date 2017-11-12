@@ -2,7 +2,7 @@ class AdminController < ApplicationController
   before_action :authorize
 
   def index
-
+    @cards = Card.all
   end
 
   private

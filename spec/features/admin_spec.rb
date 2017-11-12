@@ -7,8 +7,8 @@ RSpec.describe 'Admin page', admin: true do
     expect(page).to have_content "Admin"
   end
 
-  xit 'does not show any card data initially' do
-    #  add counterexamples as things are added
+  it 'does not show any card data initially' do
+    #  add counterexamples as elements are added to the view
     expect(page).to_not have_css "ul.ordered_cards"
   end
 
