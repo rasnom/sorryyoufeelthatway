@@ -3,4 +3,9 @@
   <h2> Ordered Cards </h2>
 
     <ul class="ordered_cards">
+      <% @cards.each do |card| %>
+        <li>
+          <%= "#{card.id} - #{card.card_template.greeting} - #{card.custom_message}" %>
+        </li>
+      <% end %>
     </ul>
