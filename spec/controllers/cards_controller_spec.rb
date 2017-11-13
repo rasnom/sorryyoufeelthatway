@@ -166,11 +166,10 @@ RSpec.describe CardsController, type: :controller, cards_controller: true do
         id: card.id,
         card: new_card_params
       } }
-      
+
       it 'Redirects to the new card form for the relevant template' do
         expect(response).to redirect_to new_card_template_card_url(card_template_id: template.id)
       end
     end
   end
-
 end
