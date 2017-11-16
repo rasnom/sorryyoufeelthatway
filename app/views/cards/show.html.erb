@@ -56,6 +56,8 @@
                 <% end %>
               </article>
 
+              <input type="hidden" name="card_id" value="<%= @card.id %>">
+
               <a href="<%= edit_card_template_card_path %>">
                 <button role="button" class="btn btn-default">Edit</button>
               </a>

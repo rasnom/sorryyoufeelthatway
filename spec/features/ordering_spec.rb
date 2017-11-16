@@ -17,7 +17,7 @@ describe 'Customizing a card' do
   end
 
   describe 'Viewing the customization page' do
-    it 'has the greeting for the template selected' do
+    it 'has the greeting for the selected template' do
       expect(page.find("#template-#{template[:id]}-image")).to_not be_nil
     end
   end
@@ -53,7 +53,7 @@ describe 'Customizing a card' do
 
         it 'Includes the Stripe checkout button', js: true do
           expect(page).to have_css '.stripe-button-el'
-          expect(page.find_button('Pay with Card')).to_not be_nil
+            expect(page.find_button('Pay with Card')).to_not be_nil
         end
       end
 
@@ -96,9 +96,30 @@ describe 'Customizing a card' do
           expect(find_field('Custom Message').value).to eq card_data[:custom_message]
         end
       end
+
+      describe 'Stripe checkout modal', js: true do
+        before(:each) { click_button('Pay with Card') }
+        it 'displays the product summary' do    # add test for showing the flash error if there is a problem with payment
+
+          within_frame('stripe_checkout_app') do
+            expect(page).to have_content "Handwritten card delivered by post"
+          end
+        end
+
+        it 'accepts a test payment' do
+          within_frame('stripe_checkout_app') do
+            fill_in 'Email', with: 'anything@what.ever'
+            fill_in 'Card number', with: '4242424242424242'
+            fill_in 'Expiry', with: '04 / 33'
+            fill_in 'CVC', with: '123'
+            click_button 'Pay $4.99'
+          end
+          # expect what?
+        end
+      end
     end
 
-    # add test for showing the flash error if there is a problem with payment
+    # add tests for showing the flash error if there is a problem with payment
 
   end
 

@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   get '/', to: 'card_templates#index'
 
-  get '/congrats', to: 'static#congrats'
-
   get '/admin', to: 'admin#index'
 
   get '/admin/signout', to: 'sessions#destroy'
