@@ -1,4 +1,6 @@
 CardTemplate.delete_all
+Card.delete_all
+AdminUser.delete_all
 
 template_list = [
   {
