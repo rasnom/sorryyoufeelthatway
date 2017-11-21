@@ -2,6 +2,10 @@ CardTemplate.delete_all
 Card.delete_all
 AdminUser.delete_all
 
+if Rails.env.development?
+  AdminUser.create(username: "dev", password: "dev")
+end
+
 template_list = [
   {
     greeting: "Sorry you feel that way",
