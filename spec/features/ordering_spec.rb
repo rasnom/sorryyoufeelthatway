@@ -108,6 +108,7 @@ describe 'Customizing a card' do
 
         it 'accepts a test payment' do
           within_frame('stripe_checkout_app') do
+            p page.body
             fill_in 'Email', with: 'anything@what.ever'
             fill_in 'Card number', with: '4242424242424242'
             fill_in 'Expiry', with: '04 / 33'

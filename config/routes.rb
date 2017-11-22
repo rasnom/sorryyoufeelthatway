@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get '/admin/signout', to: 'sessions#destroy'
 
+  get '/support', to: 'cards#support'
+
   resources :card_templates, only: [:index] do
     resources :cards, except: [:index, :destroy]
   end
