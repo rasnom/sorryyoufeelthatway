@@ -172,4 +172,12 @@ RSpec.describe CardsController, type: :controller, cards_controller: true do
       end
     end
   end
+
+  describe 'GET support' do
+    before(:each) { get :support }
+
+    it 'renders the new card page' do
+      expect(response).to render_template 'new'
+    end
+  end
 end

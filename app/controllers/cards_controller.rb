@@ -36,6 +36,10 @@ class CardsController < ApplicationController
     @card.update(card_params)
   end
 
+  def support
+    render 'new'
+  end
+
   private
 
   def check_session
