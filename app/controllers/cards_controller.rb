@@ -37,6 +37,7 @@ class CardsController < ApplicationController
   end
 
   def support
+    @template = CardTemplate.find_by(greeting: "Sorry you feel that way")
     render 'new'
   end
 

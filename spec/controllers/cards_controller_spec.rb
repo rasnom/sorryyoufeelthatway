@@ -186,10 +186,20 @@ RSpec.describe CardsController, type: :controller, cards_controller: true do
   end
 
   describe 'GET support' do
+    let!(:sorry_template) do
+      CardTemplate.create(
+        greeting: "Sorry you feel that way",
+        image_file: "sorry_template_0.1.svg"
+      )
+    end
     before(:each) { get :support }
 
     it 'renders the new card page' do
       expect(response).to render_template 'new'
+    end
+
+    it 'assigns @template to be the sorry_template' do
+      expect(assigns(:template).greeting).to eq 'Sorry you feel that way'
     end
   end
 end
