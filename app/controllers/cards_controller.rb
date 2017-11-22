@@ -37,6 +37,7 @@ class CardsController < ApplicationController
   end
 
   def support
+    @context = 'Contact Support'
     @template = CardTemplate.find_by(greeting: "Sorry you feel that way")
     @prefill = {
       recipient_name: 'SorryYouFeelThatWay Support Team',

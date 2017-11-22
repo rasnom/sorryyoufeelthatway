@@ -205,5 +205,9 @@ RSpec.describe CardsController, type: :controller, cards_controller: true do
     it 'assigns @prefill' do
       expect(assigns(:prefill)[:recipient_name]).to eq 'SorryYouFeelThatWay Support Team'
     end
+
+    it 'assigns @context' do
+      expect(assigns(:context)).to eq 'Contact Support'
+    end
   end
 end
