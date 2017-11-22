@@ -173,6 +173,18 @@ RSpec.describe CardsController, type: :controller, cards_controller: true do
     end
   end
 
+  describe 'GET new' do
+    before(:each) { get :new, params: { card_template_id: template.id } }
+
+    it 'renders the new template' do
+      expect(response).to render_template 'new'
+    end
+
+    it 'assigns @template' do
+      expect(assigns(:template).greeting).to eq 'Whoa Nellie'
+    end
+  end
+
   describe 'GET support' do
     before(:each) { get :support }
 
