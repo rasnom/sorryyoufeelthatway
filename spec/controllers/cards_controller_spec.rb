@@ -201,5 +201,9 @@ RSpec.describe CardsController, type: :controller, cards_controller: true do
     it 'assigns @template to be the sorry_template' do
       expect(assigns(:template).greeting).to eq 'Sorry you feel that way'
     end
+
+    it 'assigns @prefill' do
+      expect(assigns(:prefill)[:recipient_name]).to eq 'SorryYouFeelThatWay Support Team'
+    end
   end
 end
