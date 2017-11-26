@@ -21,9 +21,15 @@ RSpec.describe 'Support Processes', support: true do
 	end
 
 	describe 'Support Button' do
-		it 'exists on the layout' do
-			visit '/'
-			expect(page).to have_css('button.support')
+		before(:each) { visit '/' }
+
+		it 'exists on the home page' do
+			expect(page).to have_css('a.btn.support')
+		end
+
+		it 'links to the support page' do
+			click_link('Support')
+			expect(page).to have_content('Contact Support')
 		end
 	end
 end
