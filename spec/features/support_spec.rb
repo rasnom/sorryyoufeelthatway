@@ -19,4 +19,11 @@ RSpec.describe 'Support Processes', support: true do
 			expect(find_field('Recipient Name').value).to eq 'SorryYouFeelThatWay Support Team'
 		end
 	end
+
+	describe 'Support Button' do
+		it 'exists on the layout' do
+			visit '/'
+			expect(page).to have_css('button.support')
+		end
+	end
 end
