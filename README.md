@@ -15,16 +15,16 @@ format for expressing defensive sentiments with the trappings of archaic civilit
 
 * Ruby (2.3.1)
 * Rails (5.1.3)
+* Postgres
 * Bootstrap
 * Stripe API
+* Travis CI
+* Rollbar
 
 ## Next Steps
 
-* Add Admin section from previous iteration 
-* Activate live Stripe account
-* Refactor styling
-* Add support page
-* New designs
+* Flesh out Admin section 
+* Add New designs
   * I'm not angry.
 * Add product photos
 
