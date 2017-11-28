@@ -172,4 +172,42 @@ RSpec.describe CardsController, type: :controller, cards_controller: true do
       end
     end
   end
+
+  describe 'GET new' do
+    before(:each) { get :new, params: { card_template_id: template.id } }
+
+    it 'renders the new template' do
+      expect(response).to render_template 'new'
+    end
+
+    it 'assigns @template' do
+      expect(assigns(:template).greeting).to eq 'Whoa Nellie'
+    end
+  end
+
+  describe 'GET support' do
+    let!(:sorry_template) do
+      CardTemplate.create(
+        greeting: "Sorry you feel that way",
+        image_file: "sorry_template_0.1.svg"
+      )
+    end
+    before(:each) { get :support }
+
+    it 'renders the new card page' do
+      expect(response).to render_template 'new'
+    end
+
+    it 'assigns @template to be the sorry_template' do
+      expect(assigns(:template).greeting).to eq 'Sorry you feel that way'
+    end
+
+    it 'assigns @prefill' do
+      expect(assigns(:prefill)[:recipient_name]).to eq 'SorryYouFeelThatWay Support Team'
+    end
+
+    it 'assigns @context' do
+      expect(assigns(:context)).to eq 'Contact Support'
+    end
+  end
 end

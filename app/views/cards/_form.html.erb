@@ -1,4 +1,4 @@
-<% @card ||= Card.new %>
+<% @card ||= Card.new(@prefill) %>
 
 <%= form_tag card_template_cards_path(@template.id), {class: "order-form"} do %>
 
